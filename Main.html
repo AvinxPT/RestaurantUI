@@ -7,22 +7,33 @@
         
         <h1>Tabela Bonita</h1>
         <table id="tabela">
-            <tr>
+            <!--<tr>
                 <th>Name</th>
                 <th>Address</th>
-            </tr>
+            </tr>-->
         </table>
         
         <br><br>
         
-        <button onclick="drawRestaurants()" name="listar">Listar</button>
+        <!-- add value na lista.-->
+        <button onclick="drawRestaurants()" name="listar">Listar</button><br>
+        <!--
         <button onclick="addRestaurants()" name="novo">update</button>
         <br><br>
+        
         <label for ="name">Restaurant Name:</label><br>
         <input type="text" id="name" name="name"><br>
         <label for="address">Restaurant Address:</label><br>
         <input type="text" id="address" name="address"><br>
         <input type="submit" value="Submit">
+        -->
+
+        <!--Filter Restaurant list-->
+        
+        <label for ="name">Restaurant Name:</label><br>
+        <input type="text" id="name" name="name"><br><br>
+        <!--<input  onClick="searchRestaurants()" type="submit" value="Submit"> -->
+        <button onclick="searchRestaurants()" type="submit" name="search">Search</button>
 
         <script src="js/javascript.js"></script>
     </body>
