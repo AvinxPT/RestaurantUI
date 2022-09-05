@@ -1,0 +1,13 @@
+#intro {
+    display: grid;
+    border-width: 2px;
+    border-color: black;
+}
+
+.image {
+    grid-row: 1/4;
+}
+
+.content {
+    grid-column: 2/4;
+}
