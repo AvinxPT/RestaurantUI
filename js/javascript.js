@@ -103,11 +103,17 @@ function drawTable(input, restaurantList){
 
         //Restaurant Info Link
         let newTdRestaurantLink = document.createElement('td');
-        let restaurantLink = document.createElement('a');
-        let contentText = document.createTextNode('Details');
-        restaurantLink.href="Restaurant.html";
-        restaurantLink.appendChild(contentText);
+        let restaurantLink = document.createElement('button');
+        restaurantLink.appendChild(document.createTextNode("Details"));
+        restaurantLink.addEventListener("click", jsonRestDetails);
+        console.log(restaurantLink);
         newTdRestaurantLink.appendChild(restaurantLink);
+        
+        //let restaurantLink = document.createElement('a');
+        //let contentText = document.createTextNode('Details');
+        //restaurantLink.href="Restaurant.html";
+        //restaurantLink.appendChild(contentText);
+        //newTdRestaurantLink.appendChild(restaurantLink);
         
         
         //console.log(restaurantLink);
@@ -149,7 +155,10 @@ function drawTable(input, restaurantList){
 
 
 
-function restaurantInfo(){
+function restaurantInfo(restaurantList){
+    document.getElementById('body').innerHTML= ""
+    console.log("fez load");
+
     var restaurantIntro = document.getElementById('intro'); 
     restaurantIntro.innerHTML="";
     //console.log("function running");
@@ -204,17 +213,16 @@ function jsonContent () {
     })
 }
 
-function jsonFilter(){
+function jsonRestDetails(){
     fetch('http://127.0.0.1:5500/js/db.json')
     .then((resp) => resp.json())
-    .then(data => {
-        for(i=0; i<data.restaurantList.length; i++){
-            drawTable(2, data.restaurantList);
+    .then(data =>{
+        for(i=0; i<data.restaurantList.length;i++){
+            console.log(data.restaurantList);
+            restaurantInfo(data.restaurantList);
         }
     })
-    .catch(function(error){
-        console.log("deu erro");
-    })
+    
 }
 
 

@@ -1,31 +1,38 @@
 <!DOCTYPE html>
 <html>
+    <link rel="stylesheet" href="css/restaurant.css">
     <head>
         <h1>Titulo</h1>
     </head>
     <body>
-        
-        <h1>Tabela Bonita</h1>
-        <table id="tabela">
-            <!--<tr>
-                <th>Name</th>
-                <th>Address</th>
-            </tr>-->
-        </table>
-        
-        <br><br>
-        
-        <!-- add value na lista.-->
-        <button onclick="drawTable(1)" name="listar">Listar</button><br>
-        <button onclick="jsonContent()">JSON TEST</button>
+        <div id="body">
+            <button onclick="jsonContent()" name="listar">Listar</button><br>
+            <!--Table with restaurant lists-->
+            <table id="tabela">
+                <!--<tr>
+                    <th>Name</th>
+                    <th>Address</th>
+                </tr>-->
+            </table>
 
+            <br><br><br>
+            
+            <!--Filter Restaurant list-->
+            
+            <label for ="name">Restaurant Name:</label><br>
+            <input type="text" id="name" name="name"><br><br>
+            <!--<input  onClick="searchRestaurants()" type="submit" value="Submit"> -->
+            <button onclick="jsonFilter()" type="submit" name="search">Search</button>
+        </div>
 
-        <!--Filter Restaurant list-->
-        
-        <label for ="name">Restaurant Name:</label><br>
-        <input type="text" id="name" name="name"><br><br>
-        <!--<input  onClick="searchRestaurants()" type="submit" value="Submit"> -->
-        <button onclick="jsonFilter()" type="submit" name="search">Search</button>
+        <div id="intro">
+            <!--
+                <img class="image" src="rest1.png">
+                <p class="content">Restaurante Nº1</p>
+                <p class="content">Descrição do restaurante</p>
+                <p class="content">Horarios</p>
+            -->
+        </div>
 
         <script src="js/javascript.js"></script>
     </body>
