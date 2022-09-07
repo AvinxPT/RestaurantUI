@@ -1,46 +1,49 @@
-let restaurantList = [
-    {
-        name:"Restaurant1",
-        address:"Address1",
-        img:"rest1.png",
-        hours:[
-            {
-                from:"10:00:00",
-                to:"22:00:00"
-            }
-        ]
-    },
-    {
-        name:"Restaurant2",
-        address:"Address2",
-        img:"rest2.png",
-        hours:[
-            {
-                from:"08:00:00",
-                to:"10:00:00"
-            }
-        ]
-    },
-    {
-        name:"Restaurant3",
-        address:"Address3",
-        img:"rest3.png",
-        hours:[
-            {
-                from:"11:00:00",
-                to:"23:00:00"
-            }
-        ]
-    },
-];
+//let restaurantList = [
+//    {
+//        id:"1",
+//        name:"Restaurant1",
+//        address:"Address1",
+//        img:"rest1.png",
+//        hours:[
+//            {
+//                from:"10:00:00",
+//                to:"22:00:00"
+//            }
+//        ]
+//    },
+//    {
+//        id:"2",
+//        name:"Restaurant2",
+//        address:"Address2",
+//        img:"rest2.png",
+//        hours:[
+//            {
+//                from:"08:00:00",
+//                to:"10:00:00"
+//            }
+//        ]
+//    },
+//    {
+//        id:"3",
+//        name:"Restaurant3",
+//        address:"Address3",
+//        img:"rest3.png",
+//        hours:[
+//            {
+//                from:"11:00:00",
+//                to:"23:00:00"
+//            }
+//        ]
+//    },
+//];
 
 //current time
 var currentDate = new Date();
 var currentTime = currentDate.toLocaleTimeString();
 //console.log(currentTime);
+var restaurantId = "";
 
-
-function drawTable(input){
+function drawTable(input, restaurantList){
 
     //input = 1 - desenha todos
     //input = 2 - desenha apenas o existente no search
@@ -48,6 +51,8 @@ function drawTable(input){
     document.getElementById("tabela").innerHTML="";
     
     var table = document.getElementById("tabela");
+
+
 
     //Header Values
     var newTrHeader = document.createElement('tr');
@@ -104,7 +109,8 @@ function drawTable(input){
         restaurantLink.appendChild(contentText);
         newTdRestaurantLink.appendChild(restaurantLink);
         
-        console.log(restaurantLink);
+        
+        //console.log(restaurantLink);
 
         //console.log(toStatus);
         if(currentTime >= fromStatus && currentTime <= toStatus) {
@@ -138,8 +144,78 @@ function drawTable(input){
             }
         }
     }
+    //need a return for restaurant page
 }
 
+
+
+function restaurantInfo(){
+    var restaurantIntro = document.getElementById('intro'); 
+    restaurantIntro.innerHTML="";
+    //console.log("function running");
+    
+    //image for the div
+    var newImgRestaurant = document.createElement('img');
+    newImgRestaurant.className = "image";
+    newImgRestaurant.src = restaurantList[0].img;
+    restaurantIntro.appendChild(newImgRestaurant);
+    console.log(restaurantIntro);
+    
+    //content of restaurant description
+    var restaurantNameIntro = document.createElement('p');
+    restaurantNameIntro.className = "content";
+    restaurantNameIntro.innerHTML = restaurantList[0].name;
+    restaurantIntro.appendChild(restaurantNameIntro);
+
+    //content of restaurant address
+    var restaurantAddressIntro = document.createElement('p');
+    restaurantAddressIntro.className = "content";
+    restaurantAddressIntro.innerHTML = restaurantList[0].address;
+    restaurantIntro.appendChild(restaurantAddressIntro);
+
+    //var to use hour info
+    var hourStatus = restaurantList[0].hours[0];
+    var hourFrom = hourStatus.from;
+    var hourTo = hourStatus.to;
+
+    console.log(hourStatus, hourFrom, hourTo);
+    
+    //Restaurant Schedule
+    var restaurantScheduleIntro = document.createElement('p');
+    restaurantScheduleIntro.className = "content";
+    restaurantScheduleIntro.innerHTML = "From "+hourFrom+" to "+hourTo;
+    restaurantIntro.appendChild(restaurantScheduleIntro);
+}
+
+
+
+
+
+function jsonContent () {
+    fetch('http://127.0.0.1:5500/js/db.json')
+    .then((resp) => resp.json())
+    .then(data => {
+        for(i=0; i<data.restaurantList.length; i++){
+            drawTable(1, data.restaurantList);
+        }
+    })
+    .catch(function(error){
+        console.log("deu erro");
+    })
+}
+
+function jsonFilter(){
+    fetch('http://127.0.0.1:5500/js/db.json')
+    .then((resp) => resp.json())
+    .then(data => {
+        for(i=0; i<data.restaurantList.length; i++){
+            drawTable(2, data.restaurantList);
+        }
+    })
+    .catch(function(error){
+        console.log("deu erro");
+    })
+}
 
 
 
