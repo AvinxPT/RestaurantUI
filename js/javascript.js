@@ -1,59 +1,19 @@
-//let restaurantList = [
-//    {
-//        id:"1",
-//        name:"Restaurant1",
-//        address:"Address1",
-//        img:"rest1.png",
-//        hours:[
-//            {
-//                from:"10:00:00",
-//                to:"22:00:00"
-//            }
-//        ]
-//    },
-//    {
-//        id:"2",
-//        name:"Restaurant2",
-//        address:"Address2",
-//        img:"rest2.png",
-//        hours:[
-//            {
-//                from:"08:00:00",
-//                to:"10:00:00"
-//            }
-//        ]
-//    },
-//    {
-//        id:"3",
-//        name:"Restaurant3",
-//        address:"Address3",
-//        img:"rest3.png",
-//        hours:[
-//            {
-//                from:"11:00:00",
-//                to:"23:00:00"
-//            }
-//        ]
-//    },
-//];
-
 //current time
 var currentDate = new Date();
 var currentTime = currentDate.toLocaleTimeString();
+
 //console.log(currentTime);
 var restaurantId = "";
 
-function drawTable(input, restaurantList){
+//tabela para all rests
+var table = document.getElementById("tabela");
 
-    //input = 1 - desenha todos
-    //input = 2 - desenha apenas o existente no search
+function allRestaurantsTable(restaurantList){
+
+
 
     document.getElementById("tabela").innerHTML="";
     
-    var table = document.getElementById("tabela");
-
-
-
     //Header Values
     var newTrHeader = document.createElement('tr');
     var newThHeaderName = document.createElement('th');
@@ -68,8 +28,6 @@ function drawTable(input, restaurantList){
     newThHeaderStatus.innerHTML = "Open/Closed";
     newThMoreInfo.innerHTML = "Details";
 
-
-
     table.appendChild(newTrHeader);
     newTrHeader.appendChild(newThHeaderImg);
     newTrHeader.appendChild(newThHeaderName);
@@ -77,152 +35,139 @@ function drawTable(input, restaurantList){
     newTrHeader.appendChild(newThHeaderStatus);
     newTrHeader.appendChild(newThMoreInfo);
 
-    for (var x=0; x<restaurantList.length; x++) {
-        var newTr = document.createElement('tr');
-        var newTdName = document.createElement('td');
-        var newTdAddress = document.createElement('td');
-            
-        //image adding
-        var newTdImg = document.createElement('td');
-        var newImg = document.createElement('img');
-        newImg.src = restaurantList[x].img;
-        newTdImg.appendChild(newImg);
-
-            
-        
-        //Restaurant status
-        var newTdStatus = document.createElement('td');
-        
-        //opening time
-        var status = restaurantList[x].hours[0];
-        var fromStatus = status.from; 
-        //console.log(fromStatus);
-        
-        //closing time
-        var toStatus = status.to;
-
-        //Restaurant Info Link
-        let newTdRestaurantLink = document.createElement('td');
-        let restaurantLink = document.createElement('button');
-        restaurantLink.appendChild(document.createTextNode("Details"));
-        restaurantLink.addEventListener("click", jsonRestDetails);
-        console.log(restaurantLink);
-        newTdRestaurantLink.appendChild(restaurantLink);
-        
-        //let restaurantLink = document.createElement('a');
-        //let contentText = document.createTextNode('Details');
-        //restaurantLink.href="Restaurant.html";
-        //restaurantLink.appendChild(contentText);
-        //newTdRestaurantLink.appendChild(restaurantLink);
-        
-        
-        //console.log(restaurantLink);
-
-        //console.log(toStatus);
-        if(currentTime >= fromStatus && currentTime <= toStatus) {
-            newTdStatus.innerHTML = "Open";
-        } else {
-            newTdStatus.innerHTML = "Closed";
-        }
-        newTdName.innerHTML = restaurantList[x].name;
-        newTdAddress.innerHTML = restaurantList[x].address;
-        
-        
-        if(input === 1){
-            //Desenha todos os elementos na tabela
-            //console.log(newTdAddress, newTdName, newImg);
-            table.appendChild(newTr);
-            newTr.appendChild(newTdImg);
-            newTr.appendChild(newTdName);
-            newTr.appendChild(newTdAddress);
-            newTr.appendChild(newTdStatus);
-            newTr.appendChild(newTdRestaurantLink);
-        }else if (input === 2){
-            if(newSearch === newTdName.innerHTML){
-                //Desenha o pedido na tabela
-                //console.log(newTdAddress, newTdName, newImg);
-                table.appendChild(newTr);
-                newTr.appendChild(newTdName);
-                newTr.appendChild(newTdAddress);
-                newTr.appendChild(newTdImg);
-                newTr.appendChild(newTdStatus);
-                newTr.appendChild(newTdRestaurantLink);
-            }
-        }
+    
+    for (let x=0; x<restaurantList.length; x++) {
+        let newTr = document.createElement('tr');
+        allRestaurantsImages(newTr, restaurantList[x]);
+        allRestaurantsNames(newTr, restaurantList[x]);
+        allRestaurantsAddresses(newTr, restaurantList[x]);
+        allRestaurantsStatus(newTr, restaurantList[x]);
+        allRestaurantsLink(newTr, restaurantList[x]);
     }
-    //need a return for restaurant page
 }
 
+function allRestaurantsImages(newTr, restaurantList){
+        //image adding
+        let newTdImg = document.createElement('td');
+        let newImg = document.createElement('img');
+        newImg.src = restaurantList.img;
+        newTdImg.appendChild(newImg);
+        //append na tabela da img
+        table.appendChild(newTr);
+        newTr.appendChild(newTdImg);
+        //--------------------------------     
+}
 
+function allRestaurantsNames(newTr, restaurantList){
+    let newTdName = document.createElement('td');
+    newTdName.innerHTML = restaurantList.name;
+    table.appendChild(newTr);
+    newTr.appendChild(newTdName);
+}
 
-function restaurantInfo(restaurantList){
+function allRestaurantsAddresses(newTr, restaurantList){
+    let newTdAddress = document.createElement('td');
+    newTdAddress.innerHTML = restaurantList.address;
+    table.appendChild(newTr);
+    newTr.appendChild(newTdAddress);
+}
+
+function allRestaurantsStatus(newTr, restaurantList){
+    let newTdStatus = document.createElement('td');
+    //opening time
+    let status = restaurantList.hours[0];
+    let fromStatus = status.from;
+    //closing time
+    let toStatus = status.to;
+    
+    if(currentTime >= fromStatus && currentTime <= toStatus) {
+        newTdStatus.innerHTML = "Open";
+    } else {
+        newTdStatus.innerHTML = "Closed";
+    }
+
+    table.appendChild(newTr);
+    newTr.appendChild(newTdStatus);
+}
+
+function allRestaurantsLink (newTr, restaurantList){
+    let newTdRestaurantLink = document.createElement('td');
+    let restaurantLink = document.createElement('button');
+    restaurantLink.appendChild(document.createTextNode("Details"));
+    restaurantLink.setAttribute("id",restaurantList.id);
+    let restaurantId = restaurantList.id;
+    restaurantLink.addEventListener("click", function(){singleRestaurantDetails(restaurantId)});
+    newTdRestaurantLink.appendChild(restaurantLink);
+
+    table.appendChild(newTr);
+    newTr.appendChild(newTdRestaurantLink);
+}
+
+function restaurantInfo(restaurantFiltered){
     document.getElementById('body').innerHTML= ""
     console.log("fez load");
 
     var restaurantIntro = document.getElementById('intro'); 
     restaurantIntro.innerHTML="";
     //console.log("function running");
-    
-    //image for the div
-    var newImgRestaurant = document.createElement('img');
-    newImgRestaurant.className = "image";
-    newImgRestaurant.src = restaurantList[0].img;
-    restaurantIntro.appendChild(newImgRestaurant);
-    console.log(restaurantIntro);
-    
-    //content of restaurant description
-    var restaurantNameIntro = document.createElement('p');
-    restaurantNameIntro.className = "content";
-    restaurantNameIntro.innerHTML = restaurantList[0].name;
-    restaurantIntro.appendChild(restaurantNameIntro);
 
-    //content of restaurant address
-    var restaurantAddressIntro = document.createElement('p');
-    restaurantAddressIntro.className = "content";
-    restaurantAddressIntro.innerHTML = restaurantList[0].address;
-    restaurantIntro.appendChild(restaurantAddressIntro);
+        
+        //image for the div
+        var newImgRestaurant = document.createElement('img');
+        newImgRestaurant.className = "image";
+        newImgRestaurant.src = restaurantFiltered.img;
+        restaurantIntro.appendChild(newImgRestaurant);
+        //console.log(restaurantIntro);
+        
+        //content of restaurant description
+        var restaurantNameIntro = document.createElement('p');
+        restaurantNameIntro.className = "content";
+        restaurantNameIntro.innerHTML = restaurantFiltered.name;
+        restaurantIntro.appendChild(restaurantNameIntro);
 
-    //var to use hour info
-    var hourStatus = restaurantList[0].hours[0];
-    var hourFrom = hourStatus.from;
-    var hourTo = hourStatus.to;
+        //content of restaurant address
+        var restaurantAddressIntro = document.createElement('p');
+        restaurantAddressIntro.className = "content";
+        restaurantAddressIntro.innerHTML = restaurantFiltered.address;
+        restaurantIntro.appendChild(restaurantAddressIntro);
 
-    console.log(hourStatus, hourFrom, hourTo);
-    
-    //Restaurant Schedule
-    var restaurantScheduleIntro = document.createElement('p');
-    restaurantScheduleIntro.className = "content";
-    restaurantScheduleIntro.innerHTML = "From "+hourFrom+" to "+hourTo;
-    restaurantIntro.appendChild(restaurantScheduleIntro);
+        //var to use hour info
+        var hourStatus = restaurantFiltered.hours[0];
+        var hourFrom = hourStatus.from;
+        var hourTo = hourStatus.to;
+
+        //console.log(hourStatus, hourFrom, hourTo);
+        
+        //Restaurant Schedule
+        var restaurantScheduleIntro = document.createElement('p');
+        restaurantScheduleIntro.className = "content";
+        restaurantScheduleIntro.innerHTML = "From "+hourFrom+" to "+hourTo;
+        restaurantIntro.appendChild(restaurantScheduleIntro);
 }
 
 
 
+//fetching functions
 
-
-function jsonContent () {
-    fetch('http://127.0.0.1:5500/js/db.json')
+function allRestaurantDetails () {
+    fetch('http://127.0.0.1:3000/users')
     .then((resp) => resp.json())
     .then(data => {
-        for(i=0; i<data.restaurantList.length; i++){
-            drawTable(1, data.restaurantList);
-        }
-    })
+            allRestaurantsTable(data.restaurantList);
+        })
     .catch(function(error){
-        console.log("deu erro");
+        console.log(error);
     })
 }
 
-function jsonRestDetails(){
-    fetch('http://127.0.0.1:5500/js/db.json')
+function singleRestaurantDetails(restaurantId){
+    
+    fetch('http://127.0.0.1:3000/restaurant/'+restaurantId)
     .then((resp) => resp.json())
     .then(data =>{
-        for(i=0; i<data.restaurantList.length;i++){
-            console.log(data.restaurantList);
-            restaurantInfo(data.restaurantList);
-        }
+        console.log(data);
+        restaurantInfo(data);
     })
-    
 }
 
 
