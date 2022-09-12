@@ -1,37 +1,37 @@
 <!DOCTYPE html>
 <html>
+
+    <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/restaurant.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
+
     <head>
-        <h1>Titulo</h1>
+        <h1>Coomer Dev All u can Eat</h1>
     </head>
     <body>
         <div id="body">
-            <button onclick="allRestaurantDetails()" name="listar">Listar</button><br>
+            <div id="restaurantSearchBar">
+                <!--<input id="pressValue" type="text" onkeypress="keyPressTest(event)">-->
+                <button onclick="allRestaurantDetails()" name="listar">Listar</button><br>
+            </div>
+    
             <!--Table with restaurant lists-->
             <table id="tabela">
-                <!--<tr>
-                    <th>Name</th>
-                    <th>Address</th>
-                </tr>-->
+
             </table>
 
             <br><br><br>
             
             <!--Filter Restaurant list-->
             
-            <label for ="name">Restaurant Name:</label><br>
-            <input type="text" id="name" name="name"><br><br>
-            <!--<input  onClick="searchRestaurants()" type="submit" value="Submit"> -->
-            <button onclick="jsonFilter()" type="submit" name="search">Search</button>
+
+            <!--<button onclick="jsonFilter()" type="submit" name="search">Search</button>-->
         </div>
 
         <div id="intro">
-            <!--
-                <img class="image" src="rest1.png">
-                <p class="content">Restaurante Nº1</p>
-                <p class="content">Descrição do restaurante</p>
-                <p class="content">Horarios</p>
-            -->
+            
         </div>
 
         <script src="js/javascript.js"></script>

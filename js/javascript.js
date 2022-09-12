@@ -5,15 +5,40 @@ var currentTime = currentDate.toLocaleTimeString();
 //console.log(currentTime);
 var restaurantId = "";
 
+
 //tabela para all rests
 var table = document.getElementById("tabela");
+//field searchBar
+var searchBar = document.getElementById("restaurantSearchBar");
+
+function keyPressTest(){
+    let value = document.getElementById("pressValue").value;
+}
+
+
+//NEEDS TO BE FIXED
+function restaurantSearchBar(){
+    document.getElementById("restaurantSearchBar").innerHTML="";
+
+    let restaurantSearchInputField = document.createElement('input');
+    restaurantSearchInputField.type = "text";
+    restaurantSearchInputField.setAttribute("id", "name");
+    searchBar.appendChild(restaurantSearchInputField);
+
+    //Button to draw table and searchbar on dom (to be removed)
+    let restaurantButtonDOM = document.createElement('button');
+    restaurantButtonDOM.innerHTML = "Refresh";
+    restaurantButtonDOM.setAttribute = ("onClick" , allRestaurantDetails);
+    searchBar.appendChild(restaurantButtonDOM);
+}
+
+
 
 function allRestaurantsTable(restaurantList){
 
-
+    restaurantSearchBar();
 
     document.getElementById("tabela").innerHTML="";
-    
     //Header Values
     var newTrHeader = document.createElement('tr');
     var newThHeaderName = document.createElement('th');
@@ -46,6 +71,7 @@ function allRestaurantsTable(restaurantList){
     }
 }
 
+//functions for restaurants table data
 function allRestaurantsImages(newTr, restaurantList){
         //image adding
         let newTdImg = document.createElement('td');
