@@ -12,21 +12,22 @@ let restaurants = [];
 
 //tabela para all rests
 var table = document.getElementById("tabela");
-//field searchBar
+//field RestaurantsearchBar
 var searchBar = document.getElementById("searchBar");
+var singleRestaurantSearchBar = document.getElementById("singleRestaurantSearchBar")
 
 
-//Function for Restaurants List Search Bar
+//Functions for Search Bar
 function restaurantSearchBar(){
     searchBar = document.getElementById("searchBar");
     searchBar.innerHTML="";
 
     let restaurantSearchBarLabel = document.createElement('label');
-    restaurantSearchBarLabel.htmlFor = "search";
+    restaurantSearchBarLabel.htmlFor = "searchRestaurant";
 
     let restaurantSearchInputField = document.createElement('input');
     restaurantSearchInputField.type = "text";
-    restaurantSearchInputField.setAttribute("id", "search");
+    restaurantSearchInputField.setAttribute("id", "searchRestaurant");
 
     searchBar.appendChild(restaurantSearchBarLabel);
     searchBar.appendChild(restaurantSearchInputField);
@@ -34,7 +35,7 @@ function restaurantSearchBar(){
     //--------------------------------------------------
     
     //input values
-    const searchInput = document.getElementById("search");
+    const searchInput = document.getElementById("searchRestaurant");
     const restName = document.getElementsByClassName("name");
     const element = document.getElementsByClassName("element");
 
@@ -56,6 +57,20 @@ function restaurantSearchBar(){
 
 }
 
+function menuSearchBar(){
+    singleRestaurantSearchBar = document.getElementById("singleRestaurantSearchBar");
+    singleRestaurantSearchBar.innerHTML="";
+
+    let singleRestaurantSearchBarLabel = document.createElement('label');
+    singleRestaurantSearchBarLabel.htmlFor = "singleRestaurantSearchRestaurant";
+
+    let singleRestaurantSearchInputField = document.createElement('input');
+    singleRestaurantSearchInputField.type = "text";
+    singleRestaurantSearchInputField.setAttribute("id", "singleRestaurantSearchRestaurant");
+
+    singleRestaurantSearchBar.appendChild(singleRestaurantSearchBarLabel);
+    singleRestaurantSearchBar.appendChild(singleRestaurantSearchInputField);
+}
 
 
 
@@ -199,6 +214,9 @@ function restaurantInfo(restaurantFiltered){
         restaurantScheduleIntro.className = "content";
         restaurantScheduleIntro.innerHTML = "From "+hourFrom+" to "+hourTo;
         restaurantIntro.appendChild(restaurantScheduleIntro);
+
+
+        menuSearchBar();
 }
 
 
