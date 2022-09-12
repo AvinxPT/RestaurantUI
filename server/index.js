@@ -7,7 +7,7 @@ const data = {
     "restaurantList":[
         {
             "id":"1",
-            "name":"Restaurant1",
+            "name":"Restaurant of patanisca",
             "address":"Address1",
             "img":"rest1.png",
             "hours":[
@@ -19,7 +19,7 @@ const data = {
         },
         {
             "id":"2",
-            "name":"Restaurant2",
+            "name":"sushi-ya",
             "address":"Address2",
             "img":"rest2.png",
             "hours":[
@@ -31,7 +31,7 @@ const data = {
         },
         {
             "id":"3",
-            "name":"Restaurant3",
+            "name":"fisherman",
             "address":"Address3",
             "img":"rest3.png",
             "hours":[

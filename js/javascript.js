@@ -5,64 +5,92 @@ var currentTime = currentDate.toLocaleTimeString();
 //console.log(currentTime);
 var restaurantId = "";
 
+//--------------------------------------------------
+// restaurantList array
+let restaurants = [];
+//--------------------------------------------------
 
 //tabela para all rests
 var table = document.getElementById("tabela");
 //field searchBar
-var searchBar = document.getElementById("restaurantSearchBar");
-
-function keyPressTest(){
-    let value = document.getElementById("pressValue").value;
-}
+var searchBar = document.getElementById("searchBar");
 
 
-//NEEDS TO BE FIXED
+//Function for Restaurants List Search Bar
 function restaurantSearchBar(){
-    document.getElementById("restaurantSearchBar").innerHTML="";
+    searchBar = document.getElementById("searchBar");
+    searchBar.innerHTML="";
+
+    let restaurantSearchBarLabel = document.createElement('label');
+    restaurantSearchBarLabel.htmlFor = "search";
 
     let restaurantSearchInputField = document.createElement('input');
     restaurantSearchInputField.type = "text";
-    restaurantSearchInputField.setAttribute("id", "name");
+    restaurantSearchInputField.setAttribute("id", "search");
+
+    searchBar.appendChild(restaurantSearchBarLabel);
     searchBar.appendChild(restaurantSearchInputField);
 
-    //Button to draw table and searchbar on dom (to be removed)
-    let restaurantButtonDOM = document.createElement('button');
-    restaurantButtonDOM.innerHTML = "Refresh";
-    restaurantButtonDOM.setAttribute = ("onClick" , allRestaurantDetails);
-    searchBar.appendChild(restaurantButtonDOM);
+    //--------------------------------------------------
+    
+    //input values
+    const searchInput = document.getElementById("search");
+    const restName = document.getElementsByClassName("name");
+    const element = document.getElementsByClassName("element");
+
+    searchInput.addEventListener("input", (e) => {
+        const value = e.target.value.toLowerCase();
+        console.log(value);
+        for(let x=0 ; x<restName.length; x++){
+            if (!restName[x].innerHTML.toLowerCase().includes(value)){
+                console.log("igual!");
+                element[x].classList.add("hide");
+            } else {
+                element[x].classList.remove("hide");
+            }
+        }
+    })
+      
+    
+    //--------------------------------------------------
+
 }
+
 
 
 
 function allRestaurantsTable(restaurantList){
-
+    
     restaurantSearchBar();
+    restaurants = restaurantList;
 
     document.getElementById("tabela").innerHTML="";
-    //Header Values
-    var newTrHeader = document.createElement('tr');
-    var newThHeaderName = document.createElement('th');
-    var newThHeaderAddress = document.createElement('th');
-    var newThHeaderImg = document.createElement('th');
-    var newThHeaderStatus = document.createElement('th');
-    var newThMoreInfo = document.createElement('th');
 
-    newThHeaderName.innerHTML = "Name";
-    newThHeaderAddress.innerHTML = "Address";
-    newThHeaderImg.innerHTML = "Image";
-    newThHeaderStatus.innerHTML = "Open/Closed";
-    newThMoreInfo.innerHTML = "Details";
-
-    table.appendChild(newTrHeader);
-    newTrHeader.appendChild(newThHeaderImg);
-    newTrHeader.appendChild(newThHeaderName);
-    newTrHeader.appendChild(newThHeaderAddress);
-    newTrHeader.appendChild(newThHeaderStatus);
-    newTrHeader.appendChild(newThMoreInfo);
+    ////Header Values
+    //var newTrHeader = document.createElement('tr');
+    //var newThHeaderName = document.createElement('th');
+    //var newThHeaderAddress = document.createElement('th');
+    //var newThHeaderImg = document.createElement('th');
+    //var newThHeaderStatus = document.createElement('th');
+    //var newThMoreInfo = document.createElement('th');
+//
+    //newThHeaderName.innerHTML = "Name";
+    //newThHeaderAddress.innerHTML = "Address";
+    //newThHeaderImg.innerHTML = "Image";
+    //newThHeaderStatus.innerHTML = "Open/Closed";
+    //newThMoreInfo.innerHTML = "Details";
+//
+    //table.appendChild(newTrHeader);
+    //newTrHeader.appendChild(newThHeaderImg);
+    //newTrHeader.appendChild(newThHeaderName);
+    //newTrHeader.appendChild(newThHeaderAddress);
+    //newTrHeader.appendChild(newThHeaderStatus);
+    //newTrHeader.appendChild(newThMoreInfo);
 
     
     for (let x=0; x<restaurantList.length; x++) {
         let newTr = document.createElement('tr');
+        newTr.className = "element";
         allRestaurantsImages(newTr, restaurantList[x]);
         allRestaurantsNames(newTr, restaurantList[x]);
         allRestaurantsAddresses(newTr, restaurantList[x]);
@@ -86,6 +114,7 @@ function allRestaurantsImages(newTr, restaurantList){
 
 function allRestaurantsNames(newTr, restaurantList){
     let newTdName = document.createElement('td');
+    newTdName.className = "name";
     newTdName.innerHTML = restaurantList.name;
     table.appendChild(newTr);
     newTr.appendChild(newTdName);
@@ -93,6 +122,7 @@ function allRestaurantsNames(newTr, restaurantList){
 
 function allRestaurantsAddresses(newTr, restaurantList){
     let newTdAddress = document.createElement('td');
+    newTdAddress.className = "address";
     newTdAddress.innerHTML = restaurantList.address;
     table.appendChild(newTr);
     newTr.appendChild(newTdAddress);
@@ -133,7 +163,7 @@ function restaurantInfo(restaurantFiltered){
     document.getElementById('body').innerHTML= ""
     console.log("fez load");
 
-    var restaurantIntro = document.getElementById('intro'); 
+    var restaurantIntro = document.getElementById('singleRestaurantHeader'); 
     restaurantIntro.innerHTML="";
     //console.log("function running");
 
@@ -195,6 +225,7 @@ function singleRestaurantDetails(restaurantId){
         restaurantInfo(data);
     })
 }
+
 
 
 
