@@ -1,12 +1,21 @@
 #singleRestaurantHeader {
     display: grid;
-    border: 1px solid black;
+    /* border: 1px solid black;*/
+    padding-left: 50px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    
 }
 
-.image {
+#singleRestaurantHeader .image {
     grid-row: 1/4;
+    text-align: center;
+    width: 80%;
+    border-radius: 50%;
 }
 
 .content {
     grid-column: 2/4;
+    text-align: left;
+    align-self: center;
 }
