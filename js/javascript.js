@@ -57,20 +57,7 @@ function restaurantSearchBar(){
 
 }
 
-function menuSearchBar(){
-    singleRestaurantSearchBar = document.getElementById("singleRestaurantSearchBar");
-    singleRestaurantSearchBar.innerHTML="";
 
-    let singleRestaurantSearchBarLabel = document.createElement('label');
-    singleRestaurantSearchBarLabel.htmlFor = "singleRestaurantSearchRestaurant";
-
-    let singleRestaurantSearchInputField = document.createElement('input');
-    singleRestaurantSearchInputField.type = "text";
-    singleRestaurantSearchInputField.setAttribute("id", "singleRestaurantSearchRestaurant");
-
-    singleRestaurantSearchBar.appendChild(singleRestaurantSearchBarLabel);
-    singleRestaurantSearchBar.appendChild(singleRestaurantSearchInputField);
-}
 
 
 
@@ -167,13 +154,16 @@ function allRestaurantsLink (newTr, restaurantList){
     restaurantLink.appendChild(document.createTextNode("Details"));
     restaurantLink.setAttribute("id",restaurantList.id);
     let restaurantId = restaurantList.id;
-    restaurantLink.addEventListener("click", function(){singleRestaurantDetails(restaurantId)});
+    restaurantLink.addEventListener("click", function(){singleRestaurantPage(restaurantId)});
     newTdRestaurantLink.appendChild(restaurantLink);
 
     table.appendChild(newTr);
     newTr.appendChild(newTdRestaurantLink);
 }
 
+
+
+//Functions for Single Restaurant / Menus
 function restaurantInfo(restaurantFiltered){
     document.getElementById('body').innerHTML= ""
     console.log("fez load");
@@ -217,9 +207,64 @@ function restaurantInfo(restaurantFiltered){
 
 
         menuSearchBar();
+        menuInfo();
+}
+
+//NOT FINISHED - Used to create Menu Search Bar
+function menuSearchBar(){
+    singleRestaurantSearchBar = document.getElementById("singleRestaurantSearchBar");
+    singleRestaurantSearchBar.innerHTML="";
+
+    let singleRestaurantSearchBarLabel = document.createElement('label');
+    singleRestaurantSearchBarLabel.htmlFor = "singleRestaurantSearchRestaurant";
+
+    let singleRestaurantSearchInputField = document.createElement('input');
+    singleRestaurantSearchInputField.type = "text";
+    singleRestaurantSearchInputField.setAttribute("id", "singleRestaurantSearchRestaurant");
+
+    singleRestaurantSearchBar.appendChild(singleRestaurantSearchBarLabel);
+    singleRestaurantSearchBar.appendChild(singleRestaurantSearchInputField);
+
+    //----------------------------------------------------------------------
+
+
+
+    //----------------------------------------------------------------------
 }
 
 
+//Function used to create Menu Cards
+function menuInfo(menuData){
+    console.log(menuData.menuList[1]);
+    dropdownLunch = document.getElementById('dropdownLunch');
+    dropdownLunch.innerHTML = "";
+
+    for(let x=0; x<menuData.menuList.length; x++){
+
+        let card = document.createElement('div');
+        card.setAttribute("class", "card");
+        
+        let imgMenu = document.createElement('div');
+        let nameMenu = document.createElement('div');
+        let detailsMenu = document.createElement('div');
+
+        imgMenu.setAttribute("class", "image");
+        let imgMenuPng = document.createElement('img');
+        imgMenuPng.src = menuData.menuList[x].image;
+        imgMenu.appendChild(imgMenuPng);
+
+        nameMenu.setAttribute("class", "name");
+        nameMenu.innerHTML = menuData.menuList[x].name;
+        detailsMenu.setAttribute("class", "details");
+        detailsMenu.innerHTML = "description";
+
+        card.appendChild(imgMenu);
+        card.appendChild(nameMenu);
+        card.appendChild(detailsMenu);
+
+        dropdownLunch.appendChild(card);
+    }
+}
 
 //fetching functions
 
@@ -239,13 +284,27 @@ function singleRestaurantDetails(restaurantId){
     fetch('http://127.0.0.1:3000/restaurant/'+restaurantId)
     .then((resp) => resp.json())
     .then(data =>{
-        console.log(data);
+        //console.log(data);
         restaurantInfo(data);
     })
 }
 
 
+function allMenuDetails(restaurantId){
+    //fetch('http://127.0.0.1:3000/restaurant/'+restaurantId+'/menu')
+    fetch('http://127.0.0.1:3000/menus')
+    .then((resp) => resp.json())
+    .then(data => {
+        //console.log(data);
+        menuInfo(data);
+    })
+}
 
+//dummy function to call both above
+function singleRestaurantPage(restaurantId){
+    singleRestaurantDetails(restaurantId);
+    allMenuDetails(restaurantId);
+}
 
 
 
