@@ -1,0 +1,282 @@
+<!--
+    Coisas em falta:
+        -Search Bar icons e Descriçao interna;
+        -Badge no lugar certo
+-->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* ---------------------------------- Body --------------------------------------------- */
+        body{
+            font-family: 'Montserrat', sans-serif;
+        }
+
+
+
+        /* ---------------------------------- Header ------------------------------------------- */
+        .header {
+            width:100%;
+            height: 62px;
+            background: #009CA3 0% 0% no-repeat padding-box;
+            box-shadow: 0px 4px 8px #00000029;
+        }
+
+        /* ---------------------------------- Titulo ------------------------------------------- */
+        .intro{ 
+            text-align: center;
+        }
+
+
+        /* ---------------------------------- SearchBar ---------------------------------------- */
+        .searchBar{
+            text-align: center;
+        }
+
+        .searchBar input{
+            width:840px;
+            height: 40px;
+            margin-bottom: 40px;
+            box-shadow: 0px 2px 4px #00000029;
+            border-radius: 45px;
+            text-align: center;
+        }
+
+        .searchBar p {
+            border: 1px solid black;
+        }
+
+        /* ---------------------------------- Cards --------------------------------------------- */
+        .table{
+            width: 1500px;
+            /*border: 1px solid black;
+            background-color: bisque;*/
+            align-self: center;
+            margin: auto;
+        }
+
+        .card{
+            display: inline-flex;
+            align-items:end;
+            width: 394px;
+            height: 128px;
+            /*border: 1px solid black;
+            background-color: red; */
+            margin-right: 50px;
+            margin-bottom: 50px;
+        }
+
+        .content{
+            display: flex;
+            width: 367px;
+            height: 100px;
+            box-shadow: 0px 2px 4px #00000029;
+            /*border: 1px solid black;
+            background-color: blue; */
+        }
+
+        img {
+            width:100px;
+            height: 100px;
+        }
+        
+        .restName{
+            margin-bottom: 5px;
+            font-size: larger;
+            font-weight: bold;
+            padding-left: 10px;
+        }
+
+        .address{
+            margin-top: 0px;
+            padding-left: 10px;
+        }
+
+        .badge{
+            width: 48px;
+            height: 48px;
+            background-color: #2B0D61;
+            border-radius: 50%;
+            align-self: baseline;
+            box-shadow: 0px 1px 2px #00000029;
+            font-size: small;
+            text-align: center;
+        }
+
+        .closed {
+            background-color: #B5ABD4;
+        }
+
+        .badge p {
+            color: white;
+        }
+
+
+    </style>
+</head>
+<body>
+    <div class="header"></div>
+    <h1 class="intro">Bem vindo ao Lista Rango</h1>
+
+
+    <div class="searchBar">
+        <input type="text" placeholder="Buscar estabelecimento">
+    </div>
+
+
+
+    <div class="table">
+        <div class="card">
+            <div class="content">
+                <img src="rest4.png">
+                <div clas="restDetails">
+                    <p class="restName">Nome do Restaurante</p>
+                    <p class="address">Endereço do Restaurante</p>
+                </div>
+            </div>
+            <div class="badge"><p>Badge</p></div>
+        </div>
+        <div class="card">
+            <div class="content">
+                <img src="rest4.png">
+                <div clas="restDetails">
+                    <p class="restName">Nome do Restaurante</p>
+                    <p class="address">Endereço do Restaurante</p>
+                </div>
+            </div>
+            <div class="badge">
+                <p>Badge</p>
+            </div>
+        </div>
+        <div class="card">
+            <div class="content">
+                <img src="rest4.png">
+                <div clas="restDetails">
+                    <p class="restName">Nome do Restaurante</p>
+                    <p class="address">Endereço do Restaurante</p>
+                </div>
+            </div>
+            <div class="badge">
+                <p>Badge</p>
+            </div>
+        </div>
+        <div class="card">
+            <div class="content">
+                <img src="rest4.png">
+                <div clas="restDetails">
+                    <p class="restName">Nome do Restaurante</p>
+                    <p class="address">Endereço do Restaurante</p>
+                </div>
+            </div>
+            <div class="badge closed">
+                <p>Badge</p>
+            </div>
+        </div>
+        <div class="card">
+            <div class="content">
+                <img src="rest4.png">
+                <div clas="restDetails">
+                    <p class="restName">Nome do Restaurante</p>
+                    <p class="address">Endereço do Restaurante</p>
+                </div>
+            </div>
+            <div class="badge closed">
+                <p>Badge</p>
+            </div>
+        </div>
+        <div class="card">
+            <div class="content">
+                <img src="rest4.png">
+                <div clas="restDetails">
+                    <p class="restName">Nome do Restaurante</p>
+                    <p class="address">Endereço do Restaurante</p>
+                </div>
+            </div>
+            <div class="badge">
+                <p>Badge</p>
+            </div>
+        </div>
+        <div class="card">
+            <div class="content">
+                <img src="rest4.png">
+                <div clas="restDetails">
+                    <p class="restName">Nome do Restaurante</p>
+                    <p class="address">Endereço do Restaurante</p>
+                </div>
+            </div>
+            <div class="badge closed">
+                <p>Badge</p>
+            </div>
+        </div>
+        <div class="card">
+            <div class="content">
+                <img src="rest4.png">
+                <div clas="restDetails">
+                    <p class="restName">Nome do Restaurante</p>
+                    <p class="address">Endereço do Restaurante</p>
+                </div>
+            </div>
+            <div class="badge closed">
+                <p>Badge</p>
+            </div>
+        </div>
+        <div class="card">
+            <div class="content">
+                <img src="rest4.png">
+                <div clas="restDetails">
+                    <p class="restName">Nome do Restaurante</p>
+                    <p class="address">Endereço do Restaurante</p>
+                </div>
+            </div>
+            <div class="badge">
+                <p>Badge</p>
+            </div>
+        </div>
+        <div class="card">
+            <div class="content">
+                <img src="rest4.png">
+                <div clas="restDetails">
+                    <p class="restName">Nome do Restaurante</p>
+                    <p class="address">Endereço do Restaurante</p>
+                </div>
+            </div>
+            <div class="badge closed">
+                <p>Badge</p>
+            </div>
+        </div>
+        <div class="card">
+            <div class="content">
+                <img src="rest4.png">
+                <div clas="restDetails">
+                    <p class="restName">Nome do Restaurante</p>
+                    <p class="address">Endereço do Restaurante</p>
+                </div>
+            </div>
+            <div class="badge closed">
+                <p>Badge</p>
+            </div>
+        </div>
+        <div class="card">
+            <div class="content">
+                <img src="rest4.png">
+                <div clas="restDetails">
+                    <p class="restName">Nome do Restaurante</p>
+                    <p class="address">Endereço do Restaurante</p>
+                </div>
+            </div>
+            <div class="badge">
+                <p>Badge</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -246,7 +246,11 @@ function menuInfo(menuData){
         
         let imgMenu = document.createElement('div');
         let nameMenu = document.createElement('div');
-        let detailsMenu = document.createElement('div');
+        let detailsMenu = document.createElement('div'); 
+        let h1Menu = document.createElement('h1');
+
+        h1Menu.innerHTML="H1 no card";
+        card.appendChild(h1Menu);
 
         imgMenu.setAttribute("class", "image");
         let imgMenuPng = document.createElement('img');
