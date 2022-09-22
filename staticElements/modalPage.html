@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet" />
+    <title>Static Template</title>
+    <style>
+        body {
+            margin: 0px;
+            font-family: "Montserrat", sans-serif;
+        }
+
+        #modal-wrapper {
+            display: flex;
+            width: 100%;
+            height: 100vh;
+            background-color: grey;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #modal {
+            background-color: white;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            box-shadow: 0px 4px 8px #00000033;
+            width: 500px;
+            padding: 15px;
+        }
+
+        #modal-image {
+            width: 100%;
+        }
+
+        #modal-title {}
+
+        #modal-description {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+
+        #modal-description-textContent {
+            width: 70%;
+        }
+
+        #modal-description-price {
+            font-size: xx-large;
+            align-self: flex-end;
+            color: #009ca3;
+            font-weight: bold;
+        }
+
+        #modal-description-hr hr {
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        #modal-quantity {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            min-height: 50px;
+            font-size: 20px;
+        }
+
+        #modal-quantity-values {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            width: 125px;
+            border: 1px solid black;
+            align-items: center;
+            background: #ffffff 0% 0% no-repeat padding-box;
+            border: 1px solid #e6e6e6;
+            color: #009ca3;
+            font-weight: bolder;
+            border-radius: 4px;
+        }
+
+        #modal-quantity-price {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            background: #009ca3 0% 0% no-repeat padding-box;
+            color: white;
+            border-radius: 4px;
+            width: 265px;
+            align-items: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="modal-wrapper">
+        <div id="modal">
+            <div id="modal-image">
+                <img src="https://placekitten.com/500/200" />
+            </div>
+            <div id="modal-title">
+                <h1>Nome do Prato</h1>
+            </div>
+            <div id="modal-description">
+                <span id="modal-description-textContent">
+                    Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                    Perspiciatis, temporibus repudiandae beatae officiis laboriosam
+                    asperiores tempore!
+                </span>
+                <span id="modal-description-price">R$19,90</span>
+            </div>
+            <div id="modal-description-hr">
+                <hr />
+            </div>
+            <div id="modal-quantity">
+                <div id="modal-quantity-values">
+                    <span>-</span>
+                    <span>1</span>
+                    <span>+</span>
+                </div>
+                <div id="modal-quantity-price">
+                    <span>Adicionar</span>
+                    <span>R$19,90</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

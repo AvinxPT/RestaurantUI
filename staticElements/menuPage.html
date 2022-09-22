@@ -1,40 +1,132 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
     <title>Document</title>
     <style>
-        body{
+        body {
+            margin: 0px;
             font-family: 'Montserrat', sans-serif;
-            justify-content: center;
         }
+
+        #page-header {
+            width: 100%;
+            height: 50px;
+            background-color: #009ca3;
+        }
+
+        .rest-grid {
+            display: grid;
+            grid-template-columns: 3fr auto 3fr;
+            grid-template-rows: 0.1fr 50px 1fr;
+            gap: 0px 0px;
+            grid-auto-flow: row;
+            align-items: center;
+            grid-template-areas:
+                ". rest-header ."
+                ". rest-searchbar ."
+                ". rest-lunch .";
+        }
+
+        .rest-header {
+            grid-area: rest-header;
+            display: flex;
+            flex-direction: row;
+            max-width: 960px;
+            padding: 10px;
+        }
+
+        #rest-header-details {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding-left: 10px;
+        }
+
+        #rest-header-details-name {
+            font-size: large;
+            font-weight: bold;
+        }
+
+        #rest-header-details-schedule {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .text-bold {
+            font-weight: bold;
+        }
+
+
+
+
+        .rest-searchbar {
+            grid-area: rest-searchbar;
+        }
+
+        .rest-searchbar input {
+            width: 100%;
+            border: 1px solid black;
+            border-radius: 20px;
+            box-shadow: 0px 2px 4px #0000001A;
+            padding: 10px 0px 10px 0px;
+            text-align: center;
+        }
+
+
+
+        .rest-lunch {
+            grid-area: rest-lunch;
+            width: 960px;
+            justify-self: center;
+        }
+
+        #rest-lunch-hr {
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        #rest-drinks-hr {
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        /*  REBOCO ----*/
 
         /* ------------------- Table of Cards -------------- */
 
-        .table{
-            width: 1000px;
-            text-align: center;
+        .table {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            max-width: 900px;
+            padding-left: 20px;
+            justify-content: center;
         }
 
         /* ------------------- Menu Card ------------------- */
 
-        .card{
+        .card {
             width: 386px;
             height: 115px;
-            display:inline-flex;
+            display: inline-flex;
             box-shadow: 0px 4px 8px #00000029;
-           /* border: 1px solid black;
+            /* border: 1px solid black;
             background-color: blue; */
             margin-right: 20px;
             margin-bottom: 20px;
         }
 
-        .content{
+        .content {
             margin-left: 5px;
             /*border: 1px solid black;
             background-color:  red; */
@@ -42,11 +134,11 @@
 
 
         /*----------  -------------*/
-        .topCard{
-            display:flex;
+        .topCard {
+            display: flex;
         }
 
-        .promoBadge{
+        .promoBadge {
             margin-top: 5px;
             margin-left: 10px;
             font-size: x-small;
@@ -63,114 +155,191 @@
 
         /*----------------Princing Card Area ------------------------ */
 
-        .price{
-        display:flex;
-        /*border: 1px solid black;
-        background-color: green;  */ 
+        .price {
+            display: flex;
+            /*border: 1px solid black;
+        background-color: green;  */
         }
 
         .promoPrice {
             margin-top: 5px;
-            margin-right:5px;
+            margin-right: 5px;
             margin-bottom: 5px;
-            color:#009CA3;
+            color: #009CA3;
             font-weight: bold;
         }
 
         .normalPrice {
             margin: 5px;
             font-size: smaller;
-            padding-top:2px;
-            color:grey;
+            padding-top: 2px;
+            color: grey;
             text-decoration: line-through;
         }
-        
-        /* -------------------- Upper Side Card ----------------------- */       .name{
-            font-size:large;
+
+        /* -------------------- Upper Side Card ----------------------- */
+        .name {
+            font-size: large;
             font-weight: bold;
             margin-top: 10px;
             margin-bottom: 5px;
         }
 
-        .description{
+        .description {
             font-size: small;
             margin-top: 5px;
-            margin-bottom: 5px; 
+            margin-bottom: 5px;
         }
-
-        /* ------------------- HIDE PROMO ELEMENT -------------------- */
-        .hide{
-            display: none;
-        }
-
     </style>
 </head>
+
 <body>
-    <div class="table">
-        <div class="card">
-            <img src="menu1.png">
-            <div class="content">
-                <div class="topCard">
-                    <p class="name">Nome do Prato</p>
-                    <div class="promoBadge hide">
-                        Promo Almoço
-                    </div>
+    <div id="page-header"></div>
+    <div class="rest-grid">
+
+
+        <div class="rest-header">
+            <div id="rest-header-img"><img src="http://placekitten.com/145/145"></div>
+            <div id="rest-header-details">
+
+                <div id="rest-header-details-name"><span>Nome do Restaurante</span></div>
+                <div id="rest-header-detais-description">
+                    <span>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eveniet, fugit tempore hic non
+                        placeat repudiandae debitis amet aspernatur officiis laudantium delectus neque explicabo ad
+                        voluptatum ab necessitatibus maxime. Recusandae, molestias.</span>
                 </div>
-                <p class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do</p>
-                <div class="price">
-                    <p class="promoPrice">R$ 19,90</p><br>
-                    <p class="normalPrice">R$ 19,90</p>
-                </div>
-            </div>
-        </div>
-        <div class="card">
-            <img src="menu1.png">
-            <div class="content">
-                <div class="topCard">
-                    <p class="name">Nome do Prato</p>
-                    <div class="promoBadge hide">
-                        Promo Almoço
-                    </div>
-                </div>
-                <p class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do</p>
-                <div class="price">
-                    <p class="promoPrice">R$ 19,90</p><br>
-                    <p class="normalPrice">R$ 19,90</p>
+                <div id="rest-header-details-schedule">
+                    <span>Segunda á Sexta: <span class="text-bold">11:30 ás 15:00</span></span>
+                    <span>Sábados: <span class="text-bold">11:30 ás 22:00</span></span>
+                    <span>Domingos e Feriados: <span class="text-bold">11:30 ás 15:00</span></span>
                 </div>
             </div>
         </div>
-        <div class="card">
-            <img src="menu1.png">
-            <div class="content">
-                <div class="topCard">
-                    <p class="name">Nome do Prato</p>
-                    <div class="promoBadge hide">
-                        Promo Almoço
-                    </div>
-                </div>
-                <p class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do</p>
-                <div class="price">
-                    <p class="promoPrice">R$ 19,90</p><br>
-                    <p class="normalPrice">R$ 19,90</p>
-                </div>
-            </div>
+
+
+        <div class="rest-searchbar">
+            <input type="text" placeholder="Buscar cardapio" />
         </div>
-        <div class="card">
-            <img src="menu1.png">
-            <div class="content">
-                <div class="topCard">
-                    <p class="name">Nome do Prato</p>
-                    <div class="promoBadge">
-                        Promo Almoço
+        <div class="rest-lunch">
+            <div id="rest-lunch-hr">Almoço
+                <hr>
+            </div>
+
+            <!-- REBOCO -->
+
+            <div class="table">
+                <div class="card">
+                    <img src="http://placekitten.com/115/115">
+                    <div class="content">
+                        <div class="topCard">
+                            <p class="name">Nome do Prato</p>
+                            <div class="promoBadge hide">
+                                Promo Almoço
+                            </div>
+                        </div>
+                        <p class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do</p>
+                        <div class="price">
+                            <p class="promoPrice">R$ 19,90</p><br>
+                            <p class="normalPrice">R$ 19,90</p>
+                        </div>
                     </div>
                 </div>
-                <p class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do</p>
-                <div class="price">
-                    <p class="promoPrice">R$ 19,90</p><br>
-                    <p class="normalPrice">R$ 19,90</p>
+                <div class="card">
+                    <img src="http://placekitten.com/115/115">
+                    <div class="content">
+                        <div class="topCard">
+                            <p class="name">Nome do Prato</p>
+                            <div class="promoBadge hide">
+                                Promo Almoço
+                            </div>
+                        </div>
+                        <p class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do</p>
+                        <div class="price">
+                            <p class="promoPrice">R$ 19,90</p><br>
+                            <p class="normalPrice">R$ 19,90</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="http://placekitten.com/115/115">
+                    <div class="content">
+                        <div class="topCard">
+                            <p class="name">Nome do Prato</p>
+                            <div class="promoBadge hide">
+                                Promo Almoço
+                            </div>
+                        </div>
+                        <p class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do</p>
+                        <div class="price">
+                            <p class="promoPrice">R$ 19,90</p><br>
+                            <p class="normalPrice">R$ 19,90</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="http://placekitten.com/115/115">
+                    <div class="content">
+                        <div class="topCard">
+                            <p class="name">Nome do Prato</p>
+                            <div class="promoBadge hide">
+                                Promo Almoço
+                            </div>
+                        </div>
+                        <p class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do</p>
+                        <div class="price">
+                            <p class="promoPrice">R$ 19,90</p><br>
+                            <p class="normalPrice">R$ 19,90</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="http://placekitten.com/115/115">
+                    <div class="content">
+                        <div class="topCard">
+                            <p class="name">Nome do Prato</p>
+                            <div class="promoBadge hide">
+                                Promo Almoço
+                            </div>
+                        </div>
+                        <p class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do</p>
+                        <div class="price">
+                            <p class="promoPrice">R$ 19,90</p><br>
+                            <p class="normalPrice">R$ 19,90</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="http://placekitten.com/115/115">
+                    <div class="content">
+                        <div class="topCard">
+                            <p class="name">Nome do Prato</p>
+                            <div class="promoBadge hide">
+                                Promo Almoço
+                            </div>
+                        </div>
+                        <p class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do</p>
+                        <div class="price">
+                            <p class="promoPrice">R$ 19,90</p><br>
+                            <p class="normalPrice">R$ 19,90</p>
+                        </div>
+                    </div>
                 </div>
             </div>
+            <div id="rest-drinks-hr">Bebidas
+                <hr>
+            </div>
+            <div id="rest-deserts-hr">Sobremesas
+                <hr>
+            </div>
+
+
+
+
+
+            <!-- REBOCO -->
         </div>
     </div>
+    </div>
 </body>
+
 </html>
