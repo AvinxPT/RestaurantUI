@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet" />
+    <style>
+        body {
+            font-family: "Montserrat", sans-serif;
+            margin: 0px;
+        }
+
+        #header {
+            width: 100%;
+            height: 62px;
+            background: #009ca3 0% 0% no-repeat padding-box;
+            box-shadow: 0px 4px 8px #00000029;
+        }
+
+        /*---------------------------------------------------------------------- hide display -------------------------------------------------------------------------------------------------------------------------------------- */
+
+        .hide {
+            display: none;
+        }
+
+        /*---------------------------------------------------------------------------------- CSS restaurantList -------------------------------------------------------------------------------------------------------- */
+
+        .intro {
+            text-align: center;
+        }
+
+        /* ---------------------------------- SearchBar ---------------------------------------- */
+        .searchBar {
+            text-align: center;
+        }
+
+        .searchBar input {
+            width: 840px;
+            height: 40px;
+            margin-bottom: 40px;
+            box-shadow: 0px 2px 4px #00000029;
+            border-radius: 45px;
+            padding-left: 20px;
+
+            text-align: left;
+            background: url("mag.png") 95%;
+            background-repeat: no-repeat;
+            background-size: 30px;
+        }
+
+        .searchBar p {
+            border: 1px solid black;
+        }
+
+        /* ---------------------------------- Cards --------------------------------------------- */
+        #wrap-table {
+            display: flex;
+            justify-content: center;
+        }
+
+        #table {
+            width: 1200px;
+            display: inline-flex;
+            flex-wrap: wrap;
+        }
+
+        .cardteste {
+            width: 190px;
+            height: 100px;
+            background-color: red;
+        }
+
+        .card {
+            width: 394px;
+            height: 128px;
+            /*border: 1px solid black;
+            background-color: red; */
+        }
+
+        .content {
+            display: flex;
+            width: 367px;
+            height: 100px;
+            box-shadow: 0px 2px 4px #00000029;
+            /*border: 1px solid black;
+            background-color: blue; */
+        }
+
+        img {
+            width: 100px;
+            height: 100px;
+        }
+
+        .restName {
+            margin-bottom: 5px;
+            font-size: larger;
+            font-weight: bold;
+            padding-left: 10px;
+        }
+
+        .address {
+            margin-top: 0px;
+            padding-left: 10px;
+        }
+
+        .badge {
+            width: 48px;
+            height: 48px;
+            background-color: #2b0d61;
+            border-radius: 50%;
+            position: relative;
+            top: -128px;
+            right: -340px;
+            box-shadow: 0px 1px 2px #00000029;
+            font-size: 10px;
+            line-height: 48px;
+            text-align: center;
+
+            color: white;
+        }
+
+        .closed {
+            background-color: #b5abd4;
+        }
+
+        .badge p {
+            color: white;
+        }
+
+        /*---------------------------------------------------------------------------------- CSS restaurantList -------------------------------------------------------------------------------------------------------- */
+    </style>
+</head>
+
+<body>
+    <div id="header">
+        <button id="butao-rest">Restaurants</button>
+        <button id="butao-rest-add">add restaurnt</button>
+        <button id="butao-fetch">fetch</button>
+        <button id="butao-menus">Menus</button>
+        <button id="butao-modal">Modal</button>
+    </div>
+    <div id="body"></div>
+</body>
+<script>
+    /*-------------------------------------------------------------------------------testes------------------------------------------------------------------------------------------------------*/
+    document.getElementById("butao-rest").addEventListener("click", () => {
+      //alert("teste1");
+      restaurantRenderList();
+    });
+    document.getElementById("butao-rest-add").addEventListener("click", () => {
+      //alert("teste1");
+      restaurantRenderAddElementToList();
+    });
+
+    document.getElementById("butao-menus").addEventListener("click", () => {
+      alert("teste2");
+    });
+    document.getElementById("butao-modal").addEventListener("click", () => {
+      alert("teste3");
+    });
+    document.getElementById("butao-fetch").addEventListener("click", () => {
+      restaurantFetch();
+    });
+
+    /*-------------------------------------------------------------------------------testes------------------------------------------------------------------------------------------------------*/
+
+    /*-------------------------------------------------------------------------------1 restaurantlist------------------------------------------------------------------------------------------------------*/
+    let restaurantRenderList = function () {
+      console.log("restaurantRenderList");
+      document.getElementById("body").innerHTML = restaurantlistTemplate;
+      document
+        .getElementsByClassName("searchBar")[0]
+        .addEventListener("input", searchInput);
+    };
+
+    let searchInput = function (e) {
+      const value = e.target.value.toLowerCase();
+      const cardName = [...document.getElementsByClassName("card")];
+      //console.log(restaurantName);
+      cardName.map((card) => {
+        //console.log("----------------");
+        //console.log(card.getElementsByClassName("restName")[0].innerText);
+        //console.log("----------------");
+        if (
+          !card.getElementsByClassName("restName")[0].innerText.includes(value)
+        ) {
+          card.classList.add("hide");
+        } else {
+          card.classList.remove("hide");
+        }
+      });
+      //console.log(value);
+    };
+
+    let restaurantRenderAddElementToList = function (name, address, id) {
+      document
+        .getElementById("table")
+        .insertAdjacentHTML(
+          "afterbegin",
+          restaurantListCardTemplate(name, address, id)
+        );
+    };
+
+    let restaurantlistTemplate = `
+      <div id="restaurantListBody">
+        <h1 class="intro">Bem vindo ao Lista Rango</h1>
+        <div class="searchBar">
+          <input type="text" placeholder="Buscar estabelecimento" />
+        </div>
+        <div id="wrap-table">
+        <div id="table">
+
+        </div>
+        </div>
+      </div>
+     `;
+
+    let restaurantListCardTemplate = function (name, address, id) {
+      return `
+        <div class="card" id="${id}"> 
+          <div class="content">
+            <img src="https://placekitten.com/100/100" />
+            <div class="restDetails">
+            <p class="restName">${name}</p>
+            <p class="address">${address}</p>
+            </div>
+          </div>
+          <div class="badge">Aberto</div>
+       </div>
+          `;
+    };
+
+    let restaurantFetch = function () {
+      fetch("https://api.npoint.io/15c6f9ec5c60bad77576")
+        .then((resp) => resp.json())
+        .then((data) => {
+          data.restaurantList.map((restaurant) => {
+            restaurantRenderAddElementToList(
+              restaurant.name,
+              restaurant.address,
+              restaurant.id
+            );
+            document
+              .getElementById(restaurant.id)
+              .addEventListener("click", function () {
+                console.log(restaurant.id);
+              });
+          });
+        });
+    };
+
+    /*//////////////////////////////////////////////////////////////////////////////restaurantlist////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+
+    /*-------------------------------------------------------------------------------2 menulist------------------------------------------------------------------------------------------------------*/
+
+    /*//////////////////////////////////////////////////////////////////////////////menulist////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+
+    /*-------------------------------------------------------------------------------3 menudetails------------------------------------------------------------------------------------------------------*/
+
+    /*//////////////////////////////////////////////////////////////////////////////menudetails////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+</script>
+
+</html>
