@@ -39,11 +39,12 @@ import * as fetch from "./fetch.js";
 //});
 
 window.onload = function (e) {
-  //restaurantRenderList();
-  //restaurantFetch(restaurantRenderAddElementToList);
-  menuRenderList();
-  fetch.menuFetch(menuRenderAddElementToList);
-  fetch.menuHeaderFetch(menuHeaderRenderToList);
+  restaurantRenderList();
+  fetch.restaurantFetch(restaurantRenderAddElementToList);
+
+  //menuRenderList();
+  //fetch.menuFetch(menuRenderAddElementToList, 1);
+  //fetch.menuHeaderFetch(menuHeaderRenderToList, 1);
 
   //renderMenuModal();
   //fetch.fetchMenuModal(renderMenuModal);
@@ -59,7 +60,10 @@ let restaurantRenderList = function () {
     .getElementsByClassName("searchBar")[0]
     .addEventListener("input", searchInput);
   document.getElementById("table").addEventListener("click", (e) => {
-    //window.location.href = "/restaurant/" + e.target.closest(".card").id;
+    console.log(e.target.closest(".card").id);
+    menuRenderList();
+    fetch.menuFetch(menuRenderAddElementToList, e.target.closest(".card").id);
+    fetch.menuHeaderFetch(menuHeaderRenderToList, e.target.closest(".card").id);
   });
 };
 
@@ -114,7 +118,7 @@ let menuRenderList = function (name, description, price) {
     .getElementsByClassName("menuTable")[0]
     .addEventListener("click", (e) => {
       console.log(e.target.closest(".menuCard").id);
-      fetch.fetchMenuModal(e.target.closest(".menuCard").id);
+      fetch.fetchMenuModal(renderMenuModal, e.target.closest(".menuCard").id);
     });
 };
 

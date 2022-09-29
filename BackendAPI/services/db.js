@@ -6,11 +6,16 @@ function query(sql, params) {
   return db.prepare(sql).all(params);
 }
 
+function queryOne(sql, params) {
+  return db.prepare(sql).get(params);
+}
+
 function run(sql, params) {
   return db.prepare(sql).run(params);
 }
 
 module.exports = {
   query,
+  queryOne,
   run
 }
