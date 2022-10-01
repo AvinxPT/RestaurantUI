@@ -3,7 +3,7 @@ const config = require('../config');
 
 function getRestaurants() {
   
-  const restaurants = db.query(`SELECT * FROM Restaurants`, []);
+  const restaurants = db.query(`SELECT * FROM Restaurants INNER JOIN WorkingDays ON Restaurants.ID=WorkingDays.restaurant_id`, []);
   //console.log(data);
  //
   return restaurants
@@ -11,7 +11,7 @@ function getRestaurants() {
 }
 
 function getRestaurant(restaurantid){
-  const restaurant = db.queryOne(`SELECT * FROM Restaurants where ID=${restaurantid}`, []);
+  const restaurant = db.queryOne(`SELECT * FROM Restaurants INNER JOIN WorkingDays ON Restaurants.ID=WorkingDays.restaurant_id where ID=${restaurantid}`, []);
   console.log(restaurant);
   return restaurant;
 }

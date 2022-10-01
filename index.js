@@ -94,12 +94,18 @@ let searchInput = function (e) {
 //});
 /*-------------------------------------------------------------------------------event delegation test------------------------------------------------------------------------------------------------------*/
 
-let restaurantRenderAddElementToList = function (name, address, id) {
+let restaurantRenderAddElementToList = function (
+  name,
+  address,
+  id,
+  status,
+  image
+) {
   document
     .getElementById("table")
     .insertAdjacentHTML(
       "afterbegin",
-      template.restaurantListCardTemplate(name, address, id)
+      template.restaurantListCardTemplate(name, address, id, status, image)
     );
 };
 
@@ -122,12 +128,46 @@ let menuRenderList = function (name, description, price) {
     });
 };
 
-let menuHeaderRenderToList = function (name, description, image) {
+let menuHeaderRenderToList = function (
+  name,
+  description,
+  image,
+  open_hours,
+  close_hours,
+  closing_days
+) {
+  let opening_hours =
+    open_hours[0] + open_hours[1] + ":" + open_hours[2] + open_hours[3];
+  let closing_hours =
+    close_hours[0] + close_hours[1] + ":" + close_hours[2] + close_hours[3];
+
+  const weekday = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday"
+  ];
+  let closing_days_text = JSON.parse(closing_days).map((item) => {
+    return weekday[item];
+  });
+
+  let closing_days_string = closing_days_text.join(", ");
+
   document
     .getElementsByClassName("rest-header")[0]
     .insertAdjacentHTML(
       "afterbegin",
-      template.menuListHeaderTemplate(name, description, image)
+      template.menuListHeaderTemplate(
+        name,
+        description,
+        image,
+        opening_hours,
+        closing_hours,
+        closing_days_string
+      )
     );
 };
 
@@ -136,11 +176,34 @@ let menuRenderAddElementToList = function (
   name,
   description,
   price,
-  id
+  id,
+  group
 ) {
+  let menutableposition;
+  if (group === "Lunch") {
+    menutableposition = 0;
+    document.getElementById("rest-lunch-hr").classList.remove("hide");
+    document
+      .getElementsByClassName("menuTable")
+      [menutableposition].classList.remove("hide");
+  }
+  if (group === "Drink") {
+    menutableposition = 1;
+    document.getElementById("rest-drinks-hr").classList.remove("hide");
+    document
+      .getElementsByClassName("menuTable")
+      [menutableposition].classList.remove("hide");
+  }
+  if (group === "Desert") {
+    menutableposition = 2;
+    document.getElementById("rest-deserts-hr").classList.remove("hide");
+    document
+      .getElementsByClassName("menuTable")
+      [menutableposition].classList.remove("hide");
+  }
   document
-    .getElementsByClassName("menuTable")[0]
-    .insertAdjacentHTML(
+    .getElementsByClassName("menuTable")
+    [menutableposition].insertAdjacentHTML(
       "afterbegin",
       template.menuListCardTemplate(image, name, description, price, id)
     );

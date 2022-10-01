@@ -1,14 +1,14 @@
-let restaurantListCardTemplate = function (name, address, id) {
+let restaurantListCardTemplate = function (name, address, id, status, image) {
   return `
             <div class="card" id="${id}">
               <div class="content">
-                <img src="https://placekitten.com/100/100" />
+                <img src="${image}" />
                 <div class="restDetails">
                 <p class="restName">${name}</p>
                 <p class="address">${address}</p>
                 </div>
               </div>
-              <div class="badge">Aberto</div>
+              <div class="badge ${status}">${status}</div>
            </div>
               `;
 };
@@ -39,19 +39,23 @@ let menuListBodyTemplate = `
       </div>
 
       <div class="rest-lunch">
-        <div id="rest-lunch-hr">Almoço
+        <div id="rest-lunch-hr" class="hide">Almoço
           <hr>
         </div>
 
-        <div class="menuTable"></div>
+        <div class="menuTable hide"></div>
 
-        <div id="rest-drinks-hr">Bebidas
-            <hr>
-        </div>
+          <div id="rest-drinks-hr" class="hide">Bebidas
+              <hr>
+          </div>
 
-        <div id="rest-deserts-hr">Sobremesas
-            <hr>
-        </div>
+          <div class="menuTable hide"></div>
+
+          <div id="rest-deserts-hr" class="hide">Sobremesas
+              <hr>
+          </div>
+
+        <div class="menuTable hide"></div>
       </div>
 
     </div>`;
@@ -67,7 +71,7 @@ let menuListCardTemplate = function (image, name, description, price, id) {
                             Promo Almoço
                         </div>
                     </div>
-                    <div class="menuDescripion">${description}</div>
+                    <div class="menuDescription">${description}</div>
                     <div class="price">
                         <p class="promoPrice">R$ ${price}</p><br>
                         <p class="normalPrice">R$ ${price}</p>
@@ -76,7 +80,14 @@ let menuListCardTemplate = function (image, name, description, price, id) {
             </div>`;
 };
 
-let menuListHeaderTemplate = function (name, description, image) {
+let menuListHeaderTemplate = function (
+  name,
+  description,
+  image,
+  open_hours,
+  close_hours,
+  closing_days
+) {
   return `      
           <div id="rest-header-img">
             <img src=${image}>
@@ -90,9 +101,9 @@ let menuListHeaderTemplate = function (name, description, image) {
                   <span>${description}</span>
               </div>
               <div id="rest-header-details-schedule">
-                  <span>Segunda á Sexta: <span class="text-bold">11:30 ás 15:00</span></span>
-                  <span>Sábados: <span class="text-bold">11:30 ás 22:00</span></span>
-                  <span>Domingos e Feriados: <span class="text-bold">11:30 ás 15:00</span></span>
+                  <span>Open at: <span class="text-bold">${open_hours}</span></span>
+                  <span>Closes at: <span class="text-bold">${close_hours}</span></span>
+                  <span>Closed: <span class="text-bold">${closing_days}</span></span>
               </div>
           </div>`;
 };
@@ -123,7 +134,7 @@ let menuModalTemplate = function (image, name, description, quantity, price) {
                   <span id="modal-quantity-values-addQuantity">+</span>
               </div>
               <div id="modal-quantity-price">
-                  <span>Adicionar</span>
+                  <span>Adicionar</spa2n>
                   <span>R$ <span id="modal-quantity-price-total">${price}</span></span>
               </div>
           </div>
