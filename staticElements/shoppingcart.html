@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet" />
+    <title>Document</title>
+    <style>
+    body {
+    font-family: "Montserrat", sans-serif;
+    /* background-color: #41D397; */
+    margin: 0px;
+    }
+
+    #body{
+        display: flex;
+        flex-direction:column;
+        max-width:1000px;
+        height: 100vh;
+        position: absolute;
+        right: 0;
+        box-shadow: 0 0 10px 0 rgb(0 0 0 / 15%);
+    }
+
+    /*----------------------------------------------------------------- Shopping cart Header ---------------------------------------------- */
+    #shoppingcart-header{
+        display: flex;
+        flex-direction: column;
+        padding: 10px;
+        /* background-color: white; */
+    }
+
+    #shoppingcart-header-content{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    #shoppingcart-header-content img {
+        height: 30px;
+    }
+    /*----------------------------------------------------------------- Shopping cart Header ---------------------------------------------- */
+    /*----------------------------------------------------------------- Table of Items ---------------------------------------------- */
+    
+    #shoppingcart-table {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        /*background-color: red; */
+        justify-content: center;
+        padding: 10px;
+    }
+
+    #shoppingcart-table-wrapper{
+        flex-grow:2;
+    }
+
+    .shoppingcart-table-item{
+        display: inline-flex;
+        width: 100%;
+        /*background-color: purple; */
+        justify-content: space-between;
+        padding:10px;
+    }
+
+    .shoppingcart-table-item-box{
+        display:flex;
+        flex-direction: column;
+    }
+
+    .shoppingcart-table-item-price{
+        align-self: flex-end;
+    }
+
+    #shoppingcart-footer{
+        display:flex;
+        flex-direction: row;
+        justify-content: space-between;
+        box-shadow: 0 0 10px 0 rgb(0 0 0 / 15%);
+    }
+
+    #shoppingcart-footer-button{
+        padding: 10px;
+        background-color: mediumblue;
+        color: white;
+        margin: 10px;
+        border-radius: 15px;
+    }
+
+    #shoppingcart-footer-total{
+        padding:10px;
+        align-self: center;
+    }
+    
+    /*----------------------------------------------------------------- Table of Items ---------------------------------------------- */
+    </style>
+
+</head>
+
+<body>
+    <div id="body">
+        <div id="shoppingcart-header">
+            <div id="shoppingcart-header-content">
+                <div id="shoppingcart-header-description">Last Products Added:</div>
+                <img src="https://www.pngfind.com/pngs/m/9-98161_x-mark-x-alphabet-icon-hd-png-download.png">
+            </div>
+        <div id="shoppingcart-header-hr"><hr /></div>
+        </div>
+        <div id="shoppingcart-table-wrapper">
+            <div id="shoppingcart-table">
+                <div class="shoppingcart-table-item">
+                    <div class="shoppingcart-table-item-box">
+                        <div class="shoppingcart-table-item-box-image">Image</div>
+                        <div class="shoppingcart-table-item-box-quantity">Quantity</div>
+                    </div>
+                    <div class="shoppingcart-table-item-description">Description</div>
+                    <div class="shoppingcart-table-item-price">Price</div>
+                </div>
+
+
+                <div class="shoppingcart-table-item">
+                    <div class="shoppingcart-table-item-box">
+                        <div class="shoppingcart-table-item-box-image">Image</div>
+                        <div class="shoppingcart-table-item-box-quantity">Quantity</div>
+                    </div>
+                    <div class="shoppingcart-table-item-description">Description</div>
+                    <div class="shoppingcart-table-item-price">Price</div>
+                </div>
+            </div>
+        </div>
+        <div id="shoppingcart-footer">
+            <div id="shoppingcart-footer-button">Button</div>
+            <div id="shoppingcart-footer-total">20€</div>
+        </div>
+    </div>
+
+</body>
+
+</html>
