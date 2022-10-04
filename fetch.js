@@ -1,5 +1,5 @@
 const baseURL =
-  "https://5f7d-2001-8a0-7509-a300-885c-a29a-dc60-748.eu.ngrok.io";
+  "https://72c4-2001-8a0-7509-a300-31ed-f7ee-c848-841a.eu.ngrok.io";
 
 function isRestaurantClosed(closingdays, open_hours, close_hours) {
   let currentDay = new Date().getDay();
@@ -79,8 +79,8 @@ let menuFetch = function (callback, id) {
 let fetchMenuModal = function (callback, id) {
   fetch(baseURL + "/products/" + id)
     .then((resp) => resp.json())
-    .then((data) => {
-      callback(data.image, data.name, data.description, data.price);
+    .then((product) => {
+      callback(product);
     });
 };
 

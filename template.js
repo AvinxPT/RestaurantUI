@@ -1,3 +1,10 @@
+let restaurantHeaderTemplate = `
+    <div id="header-wrapper">
+      <img id="home-button" src="home.png" />
+      <img id="cart-button" src="cart.png" />
+    </div>
+`;
+
 let restaurantListCardTemplate = function (name, address, id, status, image) {
   return `
             <div class="card" id="${id}">
@@ -108,21 +115,21 @@ let menuListHeaderTemplate = function (
           </div>`;
 };
 
-let menuModalTemplate = function (image, name, description, quantity, price) {
+let menuModalTemplate = function (product) {
   return `                       
     <div id="modal-wrapper">
       <div id="modal">
           <div id="modal-image">
-              <img src=${image} />
+              <img src=${product.image} />
           </div>
           <div id="modal-title">
-              <h1>${name}</h1>
+              <h1>${product.name}</h1>
           </div>
           <div id="modal-description">
               <span id="modal-description-textContent">
-                  ${description}
+                  ${product.description}
               </span>
-              <span id="modal-description-price">R$ ${price}</span>
+              <span id="modal-description-price">R$ ${product.price}</span>
           </div>
           <div id="modal-description-hr">
               <hr />
@@ -130,23 +137,65 @@ let menuModalTemplate = function (image, name, description, quantity, price) {
           <div id="modal-quantity">
               <div id="modal-quantity-values">
                   <span id="modal-quantity-values-removeQuantity">-</span>
-                  <span id="modal-quantity-values-items">${quantity}</span>
+                  <span id="modal-quantity-values-items">${product.quantity}</span>
                   <span id="modal-quantity-values-addQuantity">+</span>
               </div>
               <div id="modal-quantity-price">
                   <span>Adicionar</spa2n>
-                  <span>R$ <span id="modal-quantity-price-total">${price}</span></span>
+                  <span>R$ <span id="modal-quantity-price-total">${product.price}</span></span>
               </div>
           </div>
       </div>
     </div>`;
 };
 
+let shoppingCartTemplate = `
+  <div id="shoppingcart-header">
+      <div id="shoppingcart-header-content">
+          <div id="shoppingcart-header-description">Last Products Added:</div>
+          <div id="shoppingcart-header-close">X</div>
+      </div>
+  <div id="shoppingcart-header-hr"><hr /></div>
+  </div>
+  <div id="shoppingcart-table-wrapper">
+      <div id="shoppingcart-table">
+          
+      </div>
+  </div>
+  <div id="shoppingcart-footer">
+      <div id="shoppingcart-footer-button">Button</div>
+      <div id="shoppingcart-footer-total">20€</div>
+  </div>`;
+
+let shoppingCartItemTemplate = function (name, description, price, image) {
+  return `
+<div class="shoppingcart-table-item">
+  <div class="shoppingcart-table-item-box">
+      <div class="shoppingcart-table-item-box-image">
+          <img src=${image} />
+      </div>
+      <div class="shoppingcart-table-item-box-quantity">
+          <span>-</span>
+          <span>1</span>
+          <span>+</span>
+      </div>
+  </div>
+  <div class="shoppingcart-table-item-description">
+      <div class="shoppingcart-table-item-description-name">${name}</div>
+      <div class="shoppingcart-table-description-details">${description}</div>
+  </div>
+  <div class="shoppingcart-table-item-price">${price}€</div>
+</div>`;
+};
+
 export {
+  restaurantHeaderTemplate,
   restaurantListCardTemplate,
   menuModalTemplate,
   restaurantlistTemplate,
   menuListCardTemplate,
   menuListHeaderTemplate,
-  menuListBodyTemplate
+  menuListBodyTemplate,
+  shoppingCartTemplate,
+  shoppingCartItemTemplate
 };

@@ -42,6 +42,8 @@ window.onload = function (e) {
   restaurantRenderList();
   fetch.restaurantFetch(restaurantRenderAddElementToList);
 
+  shoppingcartRender();
+
   //menuRenderList();
   //fetch.menuFetch(menuRenderAddElementToList, 1);
   //fetch.menuHeaderFetch(menuHeaderRenderToList, 1);
@@ -51,11 +53,64 @@ window.onload = function (e) {
 };
 
 /*-------------------------------------------------------------------------------testes------------------------------------------------------------------------------------------------------*/
+let shoppingcartRender = function () {
+  document.getElementById("cart-button").addEventListener("click", (e) => {
+    // botao close
+
+    // render container
+    document.getElementById("shoppingcart-wrapper").innerHTML =
+      template.shoppingCartTemplate;
+    document
+      .getElementById("shoppingcart-header-close")
+      .addEventListener("click", (e) => {
+        document.getElementById("shoppingcart-wrapper").innerHTML = "";
+      });
+
+    let allProducts = JSON.parse(sessionStorage.getItem("allEntries"));
+    // load products from storage
+    console.log(allProducts);
+    // adiciona um item ao carrinho
+    allProducts.map((item) => {
+      document.getElementById("shoppingcart-table").insertAdjacentHTML(
+        "afterbegin",
+        template.shoppingCartItemTemplate(
+          //"Chouriço",
+          //"Belo e redondo Sardao",
+          //"10",
+          //"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQiqSKHz5s8b_HeQLzxLrRn2xjD8dL_zZBIArSYfjg7&s"
+          item.name,
+          item.description,
+          item.price,
+          item.image
+        )
+      );
+    });
+  });
+};
+
+let cartContent = function (image, name, description, price) {
+  let allEntries = JSON.parse(sessionStorage.getItem("allEntries"));
+  if (allEntries == null) {
+    allEntries = [];
+  }
+  allEntries.push({ image, name, description, price });
+  sessionStorage.setItem("allEntries", JSON.stringify(allEntries));
+};
 
 /*-------------------------------------------------------------------------------1 restaurantlist------------------------------------------------------------------------------------------------------*/
 let restaurantRenderList = function () {
+  document.getElementById("body").innerHTML = "";
+
   console.log("restaurantRenderList");
   document.getElementById("body").innerHTML = template.restaurantlistTemplate;
+  if (document.getElementById("header").innerHTML === "") {
+    document.getElementById("header").innerHTML =
+      template.restaurantHeaderTemplate;
+    document.getElementById("home-button").addEventListener("click", (e) => {
+      restaurantRenderList();
+      fetch.restaurantFetch(restaurantRenderAddElementToList);
+    });
+  }
   document
     .getElementsByClassName("searchBar")[0]
     .addEventListener("input", searchInput);
@@ -75,7 +130,12 @@ let searchInput = function (e) {
     //console.log("----------------");
     //console.log(card.getElementsByClassName("restName")[0].innerText);
     //console.log("----------------");
-    if (!card.getElementsByClassName("restName")[0].innerText.includes(value)) {
+    if (
+      !card
+        .getElementsByClassName("restName")[0]
+        .innerText.toLowerCase()
+        .includes(value)
+    ) {
       card.classList.add("hide");
     } else {
       card.classList.remove("hide");
@@ -122,6 +182,12 @@ let menuRenderList = function (name, description, price) {
     .addEventListener("input", menuSearchInput);
   document
     .getElementsByClassName("menuTable")[0]
+    .addEventListener("click", (e) => {
+      console.log(e.target.closest(".menuCard").id);
+      fetch.fetchMenuModal(renderMenuModal, e.target.closest(".menuCard").id);
+    });
+  document
+    .getElementsByClassName("menuTable")[1]
     .addEventListener("click", (e) => {
       console.log(e.target.closest(".menuCard").id);
       fetch.fetchMenuModal(renderMenuModal, e.target.closest(".menuCard").id);
@@ -180,27 +246,23 @@ let menuRenderAddElementToList = function (
   group
 ) {
   let menutableposition;
+  let selectedhr;
   if (group === "Lunch") {
     menutableposition = 0;
-    document.getElementById("rest-lunch-hr").classList.remove("hide");
-    document
-      .getElementsByClassName("menuTable")
-      [menutableposition].classList.remove("hide");
+    selectedhr = "rest-lunch-hr";
   }
   if (group === "Drink") {
     menutableposition = 1;
-    document.getElementById("rest-drinks-hr").classList.remove("hide");
-    document
-      .getElementsByClassName("menuTable")
-      [menutableposition].classList.remove("hide");
+    selectedhr = "rest-drinks-hr";
   }
   if (group === "Desert") {
     menutableposition = 2;
-    document.getElementById("rest-deserts-hr").classList.remove("hide");
-    document
-      .getElementsByClassName("menuTable")
-      [menutableposition].classList.remove("hide");
+    selectedhr = "rest-deserts-hr";
   }
+  document.getElementById(selectedhr).classList.remove("hide");
+  document
+    .getElementsByClassName("menuTable")
+    [menutableposition].classList.remove("hide");
   document
     .getElementsByClassName("menuTable")
     [menutableposition].insertAdjacentHTML(
@@ -231,14 +293,11 @@ let menuSearchInput = function (e) {
 
 /*-------------------------------------------------------------------------------3 menudetails------------------------------------------------------------------------------------------------------*/
 
-let renderMenuModal = function (image, name, description, price) {
+let renderMenuModal = function (product) {
   let quantity = 1;
   document
     .getElementById("body")
-    .insertAdjacentHTML(
-      "afterbegin",
-      template.menuModalTemplate(image, name, description, quantity, price)
-    );
+    .insertAdjacentHTML("afterbegin", template.menuModalTemplate(product));
   document.getElementById("modal-wrapper").addEventListener("click", (e) => {
     if (e.target.id === "modal-wrapper") {
       document.getElementById("modal-wrapper").remove();
@@ -255,8 +314,14 @@ let renderMenuModal = function (image, name, description, price) {
           "modal-quantity-values-items"
         ).innerHTML = quantity;
         document.getElementById("modal-quantity-price-total").innerHTML =
-          quantity * price;
+          quantity * product.price;
       }
+    });
+  document
+    .getElementById("modal-quantity-price")
+    .addEventListener("click", (e) => {
+      console.log("added product");
+      cartContent(product);
     });
   document
     .getElementById("modal-quantity-values-addQuantity")
@@ -266,7 +331,7 @@ let renderMenuModal = function (image, name, description, price) {
         "modal-quantity-values-items"
       ).innerHTML = quantity;
       document.getElementById("modal-quantity-price-total").innerHTML =
-        quantity * price;
+        quantity * product.price;
     });
 };
 

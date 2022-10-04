@@ -22,6 +22,21 @@
             box-shadow: 0px 4px 8px #00000029;
         }
 
+        /* --------------------------------------------------------------------- header wrapper ------------------------------------------------------------------------------------------------------------------------------------ */
+
+        #header-wrapper {
+            display: flex;
+            align-items: center;
+            height: 62px;
+            justify-content: space-around;
+        }
+
+        #header-wrapper img {
+            height: 31px;
+            cursor: pointer;
+        }
+
+        /* --------------------------------------------------------------------- header wrapper ------------------------------------------------------------------------------------------------------------------------------------ */
         /*---------------------------------------------------------------------- hide display -------------------------------------------------------------------------------------------------------------------------------------- */
 
         .hide {
@@ -40,7 +55,7 @@
         }
 
         .searchBar input {
-            width: 840px;
+            width: 80vw;
             height: 40px;
             margin-bottom: 40px;
             box-shadow: 0px 2px 4px #00000029;
@@ -410,10 +425,131 @@
             cursor: default;
         }
     </style>
+    <style>
+        #shoppingcart-wrapper {
+            display: flex;
+            flex-direction: column;
+            max-width: 1000px;
+            height: 100vh;
+            position: absolute;
+            right: 0;
+            box-shadow: 0 0 10px 0 rgb(0 0 0 / 15%);
+            background-color: white;
+            z-index: 1;
+        }
+
+        /*----------------------------------------------------------------- Shopping cart Header ---------------------------------------------- */
+        #shoppingcart-header {
+            display: flex;
+            flex-direction: column;
+            padding: 10px;
+            /* background-color: white; */
+        }
+
+        #shoppingcart-header-content {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        #shoppingcart-header-description {
+            font-weight: bold;
+        }
+
+        #shoppingcart-header-close {
+            height: 30px;
+            font-weight: bold;
+            font-size: larger;
+            cursor: pointer;
+        }
+
+        /*----------------------------------------------------------------- Shopping cart Header ---------------------------------------------- */
+        /*----------------------------------------------------------------- Table of Items ---------------------------------------------- */
+
+        #shoppingcart-table {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            /*background-color: red; */
+            justify-content: center;
+            padding: 10px;
+        }
+
+        #shoppingcart-table-wrapper {
+            flex-grow: 2;
+        }
+
+        .shoppingcart-table-item {
+            display: inline-flex;
+            width: 100%;
+            /*background-color: purple; */
+            justify-content: space-between;
+            padding: 10px;
+        }
+
+        .shoppingcart-table-item-box {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .shoppingcart-table-item-price {
+            align-self: flex-end;
+        }
+
+
+        .shoppingcart-table-item-box-image img {
+            width: 100px;
+            height: 100px;
+        }
+
+        .shoppingcart-table-item-box-quantity {
+            display: flex;
+            flex-direction: row;
+            border: 1px solid black;
+            justify-content: space-around;
+        }
+
+        .shoppingcart-table-item-description-name {
+            font-weight: bold;
+            padding-left: 10px;
+        }
+
+        .shoppingcart-table-description-details {
+            padding-left: 10px;
+            max-width: 300px;
+        }
+
+        /*----------------------------------------------------------------- Table of Items ---------------------------------------------- */
+        /*----------------------------------------------------------------- Footer ------------------------------------------------------ */
+
+        #shoppingcart-footer {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            box-shadow: 0 0 10px 0 rgb(0 0 0 / 15%);
+        }
+
+        #shoppingcart-footer-button {
+            padding: 10px;
+            background-color: #009ca3;
+            color: white;
+            margin: 10px;
+            border-radius: 15px;
+        }
+
+        #shoppingcart-footer-total {
+            padding: 10px;
+            align-self: center;
+            font-weight: bold;
+        }
+
+        /*----------------------------------------------------------------- Footer ------------------------------------------------------ */
+    </style>
 </head>
 
 <body>
-
+    <div id="shoppingcart-wrapper"></div>
     <div id="header"></div>
     <div id="body">
 

@@ -41,6 +41,10 @@
         justify-content: space-between;
     }
 
+    #shoppingcart-header-description{
+        font-weight: bold;
+    }
+
     #shoppingcart-header-content img {
         height: 30px;
     }
@@ -77,6 +81,31 @@
         align-self: flex-end;
     }
 
+
+    .shoppingcart-table-item-box-image img{
+        width: 100px;
+        height: 100px;
+    }
+
+    .shoppingcart-table-item-box-quantity{
+        display:flex;
+        flex-direction: row;
+        border: 1px solid black;
+        justify-content: space-around;
+    }
+
+    .shoppingcart-table-item-description-name{
+        font-weight: bold;
+        padding-left: 10px;
+    }
+
+    .shoppingcart-table-description-details{
+        padding-left: 10px;
+    }
+    
+    /*----------------------------------------------------------------- Table of Items ---------------------------------------------- */
+    /*----------------------------------------------------------------- Footer ------------------------------------------------------ */
+    
     #shoppingcart-footer{
         display:flex;
         flex-direction: row;
@@ -86,7 +115,7 @@
 
     #shoppingcart-footer-button{
         padding: 10px;
-        background-color: mediumblue;
+        background-color: #009ca3;
         color: white;
         margin: 10px;
         border-radius: 15px;
@@ -95,9 +124,10 @@
     #shoppingcart-footer-total{
         padding:10px;
         align-self: center;
+        font-weight:bold;
     }
     
-    /*----------------------------------------------------------------- Table of Items ---------------------------------------------- */
+    /*----------------------------------------------------------------- Footer ------------------------------------------------------ */
     </style>
 
 </head>
@@ -115,21 +145,20 @@
             <div id="shoppingcart-table">
                 <div class="shoppingcart-table-item">
                     <div class="shoppingcart-table-item-box">
-                        <div class="shoppingcart-table-item-box-image">Image</div>
-                        <div class="shoppingcart-table-item-box-quantity">Quantity</div>
+                        <div class="shoppingcart-table-item-box-image">
+                            <img src="https://thumbs.dreamstime.com/b/shirts-stack-isolated-background-35167397.jpg" />
+                        </div>
+                        <div class="shoppingcart-table-item-box-quantity">
+                            <span>-</span>
+                            <span>1</span>
+                            <span>+</span>
+                        </div>
                     </div>
-                    <div class="shoppingcart-table-item-description">Description</div>
-                    <div class="shoppingcart-table-item-price">Price</div>
-                </div>
-
-
-                <div class="shoppingcart-table-item">
-                    <div class="shoppingcart-table-item-box">
-                        <div class="shoppingcart-table-item-box-image">Image</div>
-                        <div class="shoppingcart-table-item-box-quantity">Quantity</div>
+                    <div class="shoppingcart-table-item-description">
+                        <div class="shoppingcart-table-item-description-name">Camisas</div>
+                        <div class="shoppingcart-table-description-details">Um belo par de camisas</div>
                     </div>
-                    <div class="shoppingcart-table-item-description">Description</div>
-                    <div class="shoppingcart-table-item-price">Price</div>
+                    <div class="shoppingcart-table-item-price">20€</div>
                 </div>
             </div>
         </div>
