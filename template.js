@@ -115,7 +115,7 @@ let menuListHeaderTemplate = function (
           </div>`;
 };
 
-let menuModalTemplate = function (product) {
+let menuModalTemplate = function (product, quantity) {
   return `                       
     <div id="modal-wrapper">
       <div id="modal">
@@ -137,7 +137,7 @@ let menuModalTemplate = function (product) {
           <div id="modal-quantity">
               <div id="modal-quantity-values">
                   <span id="modal-quantity-values-removeQuantity">-</span>
-                  <span id="modal-quantity-values-items">${product.quantity}</span>
+                  <span id="modal-quantity-values-items">${quantity}</span>
                   <span id="modal-quantity-values-addQuantity">+</span>
               </div>
               <div id="modal-quantity-price">
@@ -163,30 +163,42 @@ let shoppingCartTemplate = `
       </div>
   </div>
   <div id="shoppingcart-footer">
-      <div id="shoppingcart-footer-button">Button</div>
-      <div id="shoppingcart-footer-total">20€</div>
-  </div>`;
 
-let shoppingCartItemTemplate = function (name, description, price, image) {
+  </div>`;
+let shoppingCartItemTemplate = function (
+  name,
+  description,
+  price,
+  image,
+  id,
+  quantity
+) {
   return `
-<div class="shoppingcart-table-item">
+<div class="shoppingcart-table-item" id=${id}>
   <div class="shoppingcart-table-item-box">
       <div class="shoppingcart-table-item-box-image">
           <img src=${image} />
       </div>
       <div class="shoppingcart-table-item-box-quantity">
-          <span>-</span>
-          <span>1</span>
-          <span>+</span>
+          <span class="shoppingcart-table-item-box-quantity-decrease">-</span>
+          <span class="shoppingcart-table-item-box-quantity-volume">${quantity}</span>
+          <span class="shoppingcart-table-item-box-quantity-increase">+</span>
       </div>
   </div>
   <div class="shoppingcart-table-item-description">
       <div class="shoppingcart-table-item-description-name">${name}</div>
       <div class="shoppingcart-table-description-details">${description}</div>
   </div>
-  <div class="shoppingcart-table-item-price">${price}€</div>
+  <div class="shoppingcart-table-item-price"><span class="shoppingcart-table-item-price-span">${
+    price * quantity
+  }</span>€</div>
 </div>`;
 };
+
+let shoppingCartFooterTemplate = `      
+<div id="shoppingcart-footer-button">Button</div>
+<div id="shoppingcart-footer-total"><span id="shoppingcart-footer-total-span">0</span>€</div>
+`;
 
 export {
   restaurantHeaderTemplate,
@@ -197,5 +209,6 @@ export {
   menuListHeaderTemplate,
   menuListBodyTemplate,
   shoppingCartTemplate,
-  shoppingCartItemTemplate
+  shoppingCartItemTemplate,
+  shoppingCartFooterTemplate
 };

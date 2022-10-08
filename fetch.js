@@ -1,5 +1,4 @@
-const baseURL =
-  "https://72c4-2001-8a0-7509-a300-31ed-f7ee-c848-841a.eu.ngrok.io";
+const baseURL = "https://ce62-2001-8a0-7509-a300-d1a8-d5e5-3696-e448.eu.ngrok.io";
 
 function isRestaurantClosed(closingdays, open_hours, close_hours) {
   let currentDay = new Date().getDay();
@@ -28,17 +27,7 @@ let restaurantFetch = function (callback) {
     .then((resp) => resp.json())
     .then((data) => {
       data.map((restaurant) => {
-        callback(
-          restaurant.name,
-          restaurant.address,
-          restaurant.ID,
-          isRestaurantClosed(
-            restaurant.closing_days,
-            restaurant.open_hours,
-            restaurant.close_hours
-          ),
-          restaurant.image
-        );
+        callback(restaurant.name, restaurant.address, restaurant.ID, isRestaurantClosed(restaurant.closing_days, restaurant.open_hours, restaurant.close_hours), restaurant.image);
       });
     });
 };
@@ -47,14 +36,7 @@ let menuHeaderFetch = function (callback, id) {
   fetch(baseURL + "/restaurants/" + id)
     .then((resp) => resp.json())
     .then((data) => {
-      callback(
-        data.name,
-        data.address,
-        data.image,
-        data.open_hours,
-        data.close_hours,
-        data.closing_days
-      );
+      callback(data.name, data.address, data.image, data.open_hours, data.close_hours, data.closing_days);
     });
 };
 
@@ -64,14 +46,7 @@ let menuFetch = function (callback, id) {
     .then((data) => {
       data.map((menu) => {
         console.log(menu.group);
-        callback(
-          menu.image,
-          menu.name,
-          menu.description,
-          menu.price,
-          menu.id,
-          menu.group
-        );
+        callback(menu.image, menu.name, menu.description, menu.price, menu.id, menu.group);
       });
     });
 };
