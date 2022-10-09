@@ -87,14 +87,7 @@ let menuListCardTemplate = function (image, name, description, price, id) {
             </div>`;
 };
 
-let menuListHeaderTemplate = function (
-  name,
-  description,
-  image,
-  open_hours,
-  close_hours,
-  closing_days
-) {
+let menuListHeaderTemplate = function (name, description, image, open_hours, close_hours, closing_days) {
   return `      
           <div id="rest-header-img">
             <img src=${image}>
@@ -165,14 +158,7 @@ let shoppingCartTemplate = `
   <div id="shoppingcart-footer">
 
   </div>`;
-let shoppingCartItemTemplate = function (
-  name,
-  description,
-  price,
-  image,
-  id,
-  quantity
-) {
+let shoppingCartItemTemplate = function (name, description, price, image, id, quantity) {
   return `
 <div class="shoppingcart-table-item" id=${id}>
   <div class="shoppingcart-table-item-box">
@@ -189,9 +175,7 @@ let shoppingCartItemTemplate = function (
       <div class="shoppingcart-table-item-description-name">${name}</div>
       <div class="shoppingcart-table-description-details">${description}</div>
   </div>
-  <div class="shoppingcart-table-item-price"><span class="shoppingcart-table-item-price-span">${
-    price * quantity
-  }</span>€</div>
+  <div class="shoppingcart-table-item-price"><span class="shoppingcart-table-item-price-span">${price * quantity}</span>€</div>
 </div>`;
 };
 

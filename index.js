@@ -75,13 +75,25 @@ let shoppingCartupdateItemQuantityAndValue = function (shopingCartItemElement, c
   let quantity = allProducts[unitIndex].quantity + cardvaluechangeNumber;
 
   // if quantity <= 0 delete product
+  if (quantity <= 0) {
+    if (cardId == allProducts[unitIndex].product.id) {
+      console.log("id igual");
+      document.getElementById(cardId).remove();
+      allProducts.splice(unitIndex, 1);
+    }
+    console.log("hehe");
+    debugger;
+  }
 
-  allProducts[unitIndex].quantity = quantity;
+  // if quantity > 0
+  if (quantity > 0) {
+    allProducts[unitIndex].quantity = quantity;
 
-  shopingCartItemElement.getElementsByClassName("shoppingcart-table-item-box-quantity-volume")[0].innerHTML = quantity;
-  shopingCartItemElement.getElementsByClassName("shoppingcart-table-item-price-span")[0].innerHTML = quantity * unitPrice;
+    shopingCartItemElement.getElementsByClassName("shoppingcart-table-item-box-quantity-volume")[0].innerHTML = quantity;
+    shopingCartItemElement.getElementsByClassName("shoppingcart-table-item-price-span")[0].innerHTML = quantity * unitPrice;
 
-  document.getElementById("shoppingcart-footer-total-span").innerHTML = shoppingCartLogic_calculteTotal(allProducts);
+    document.getElementById("shoppingcart-footer-total-span").innerHTML = shoppingCartLogic_calculteTotal(allProducts);
+  }
 
   sessionStorage.setItem("allEntries", JSON.stringify(allProducts));
 };

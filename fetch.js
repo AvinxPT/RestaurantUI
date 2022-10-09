@@ -1,4 +1,4 @@
-const baseURL = "https://ce62-2001-8a0-7509-a300-d1a8-d5e5-3696-e448.eu.ngrok.io";
+const baseURL = "https://aade-2001-8a0-7509-a300-d1a8-d5e5-3696-e448.eu.ngrok.io";
 
 function isRestaurantClosed(closingdays, open_hours, close_hours) {
   let currentDay = new Date().getDay();
