@@ -143,21 +143,26 @@ let menuModalTemplate = function (product, quantity) {
 };
 
 let shoppingCartTemplate = `
-  <div id="shoppingcart-header">
-      <div id="shoppingcart-header-content">
-          <div id="shoppingcart-header-description">Last Products Added:</div>
-          <div id="shoppingcart-header-close">X</div>
-      </div>
-  <div id="shoppingcart-header-hr"><hr /></div>
+<div id="shoppingcart-module">
+  <div id="shoppingcart-wrapper">
+    <div id="shoppingcart-header">
+        <div id="shoppingcart-header-content">
+            <div id="shoppingcart-header-description">Last Products Added:</div>
+            <div id="shoppingcart-header-close">X</div>
+        </div>
+    <div id="shoppingcart-header-hr"><hr /></div>
+    </div>
+    <div id="shoppingcart-table-wrapper">
+        <div id="shoppingcart-table">
+            
+        </div>
+    </div>
+    <div id="shoppingcart-footer">
+  
+    </div>
   </div>
-  <div id="shoppingcart-table-wrapper">
-      <div id="shoppingcart-table">
-          
-      </div>
-  </div>
-  <div id="shoppingcart-footer">
+</div>`;
 
-  </div>`;
 let shoppingCartItemTemplate = function (name, description, price, image, id, quantity) {
   return `
 <div class="shoppingcart-table-item" id=${id}>

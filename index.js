@@ -102,11 +102,15 @@ let shoppingcartRender = function () {
   // render container
   let allProducts = JSON.parse(sessionStorage.getItem("allEntries"));
   console.log(allProducts);
+  document.getElementById("shoppingcart-body").innerHTML = template.shoppingCartTemplate;
 
-  document.getElementById("shoppingcart-wrapper").innerHTML = template.shoppingCartTemplate;
-
-  document.getElementById("shoppingcart-header-close").addEventListener("click", (e) => {
-    document.getElementById("shoppingcart-wrapper").innerHTML = "";
+  document.getElementById("shoppingcart-module").addEventListener("click", (e) => {
+    if (e.target.id === "shoppingcart-module") {
+      document.getElementById("shoppingcart-module").remove();
+    }
+    if (e.target.closest("#shoppingcart-header-close")) {
+      document.getElementById("shoppingcart-body").innerHTML = "";
+    }
   });
 
   allProducts.map((item) => {

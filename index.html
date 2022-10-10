@@ -426,6 +426,15 @@
         }
     </style>
     <style>
+        #shoppingcart-module {
+            width: 100vw;
+            height: 100vh;
+            background-color: rgba(123, 116, 120, 0);
+            position: absolute;
+            left: 0px;
+            top: 0px;
+        }
+
         #shoppingcart-wrapper {
             display: flex;
             flex-direction: column;
@@ -510,6 +519,10 @@
             justify-content: space-around;
         }
 
+        .shoppingcart-table-item-description {
+            flex-grow: 1;
+        }
+
         .shoppingcart-table-item-description-name {
             font-weight: bold;
             padding-left: 10px;
@@ -549,7 +562,7 @@
 </head>
 
 <body>
-    <div id="shoppingcart-wrapper"></div>
+    <div id="shoppingcart-body"></div>
     <div id="header"></div>
     <div id="body">
 
